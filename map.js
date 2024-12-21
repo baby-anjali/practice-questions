@@ -78,7 +78,7 @@ const negatedBooleansOf = function (booleans) {
 // character codes of ["a", "b", "c"] => [97, 98, 99]
 // Use the `charCodeAt` method on each string
 const charCodes = function (letter) {
-  return letter !== '' ? letter.charCodeAt(0) : '';
+  return letter.charCodeAt(0);
 };
 
 const charCodesOf = function (strings) {
