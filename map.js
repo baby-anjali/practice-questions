@@ -400,6 +400,14 @@ const testAll = function (testCases) {
   console.table(outcome);
 };
 
+const testCasesForLengthsOf = [
+  [lengthsOf, ["apple", "banana", "kiwi"], [5, 6, 4]],
+  [lengthsOf, ["", "banana", "kiwi"], [0, 6, 4]],
+  [lengthsOf, ["", "banana", "ki wi"], [0, 6, 5]],
+  [lengthsOf, ["", "", ""], [0, 0, 0]],
+  [lengthsOf, [], []]
+];
+
 const testCasesForSquaresOf = [
   [squaresOf, [1, 2, 3], [1, 4, 9]],
   [squaresOf, [-1, -2, -3], [1, 4, 9]],
@@ -407,6 +415,6 @@ const testCasesForSquaresOf = [
   [squaresOf, [], []]
 ];
 
-const testCases = [...testCasesForSquaresOf];
+const testCases = [...testCasesForSquaresOf, ...testCasesForLengthsOf];
 
 testAll(testCases);
