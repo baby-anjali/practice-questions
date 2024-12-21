@@ -26,7 +26,13 @@ const uppercaseOf = function (strings) {
 };
 
 // first characters of ["apple", "banana", "kiwi"] => ["a", "b", "k"]
-const firstCharactersOf = function (strings) { };
+const firstCharacter = function (string) {
+  return string[1];
+};
+
+const firstCharactersOf = function (strings) {
+  return strings.map(firstCharacter);
+};
 
 // // truth values of [0, 1, 2, 3] => [false, true, true, true]
 // // Assume non-zero numbers are true, and zero is false
@@ -426,7 +432,10 @@ const testAll = function (testCases) {
 };
 
 const testCasesForFirstCharacter = [
-  [firstCharactersOf, ["apple", "banana", "kiwi"], ["a", "b", "k"]]
+  [firstCharactersOf, ["apple", "banana", "kiwi"], ["a", "b", "k"]],
+  [firstCharactersOf, ["apple", "", "kiwi"], ["a", "", "k"]],
+  [firstCharactersOf, ["", "", ""], ["", "", ""]],
+  [firstCharactersOf, [], []]
 ];
 
 const testForUpperCaseOf = [
