@@ -25,8 +25,8 @@ const uppercaseOf = function (strings) {
   return strings.map(capitalise);
 };
 
-// // first characters of ["apple", "banana", "kiwi"] => ["a", "b", "k"]
-// const firstCharactersOf = function (strings) { };
+// first characters of ["apple", "banana", "kiwi"] => ["a", "b", "k"]
+const firstCharactersOf = function (strings) { };
 
 // // truth values of [0, 1, 2, 3] => [false, true, true, true]
 // // Assume non-zero numbers are true, and zero is false
@@ -420,10 +420,14 @@ const testAll = function (testCases) {
   const failed = testCases.reduce(testEach, []);
 
   const percent = (testCases.length - failed.length) / testCases.length * 100;
-  console.log(percent, "% passing!");
+  console.log(Math.floor(percent), "% passing!");
 
   console.table(failed);
 };
+
+const testCasesForFirstCharacter = [
+  [firstCharactersOf, ["apple", "banana", "kiwi"], ["a", "b", "k"]]
+];
 
 const testForUpperCaseOf = [
   [uppercaseOf, ["hello", "world"], ["HELLO", "WORLD"]],
@@ -450,7 +454,7 @@ const testCasesForSquaresOf = [
 
 const testCases = [
   ...testCasesForSquaresOf, ...testCasesForLengthsOf,
-  ...testForUpperCaseOf
+  ...testForUpperCaseOf, ...testCasesForFirstCharacter
 ];
 
 testAll(testCases);
