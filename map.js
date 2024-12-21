@@ -54,7 +54,17 @@ const reversedStringsOf = function (strings) {
 };
 
 // double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoogg", "bbaatt"]
-const doubleLettersOf = function (strings) { };
+const doubleEach = function (letter) {
+  return letter + letter;
+};
+
+const doubleLetters = function (string) {
+  return string.split('').map(doubleEach).join('');
+};
+
+const doubleLettersOf = function (strings) {
+  return strings.map(doubleLetters);
+};
 
 // // boolean negation of [true, false, true] => [false, true, false]
 // const negatedBooleansOf = function (booleans) { };
@@ -428,7 +438,7 @@ const testEach = function (failed, [funcName, inputs, expected]) {
   const actual = funcName(inputs);
 
   if (!areArraysEqual(actual, expected)) {
-    failed.push([funcName, inputs, actual, expected]);
+    failed.push([funcName, inputs, expected, actual]);
   }
 
   return failed;
@@ -444,7 +454,7 @@ const testAll = function (testCases) {
 };
 
 const testCasesForDoubleLetters = [
-  [doubleLettersOf, ["cat", "dog", "bat"], ["ccaat", "ddoogg", "bbaatt"]],
+  [doubleLettersOf, ["cat", "dog", "bat"], ["ccaatt", "ddoogg", "bbaatt"]],
   [doubleLettersOf, ["bat"], ["bbaatt"]],
   [doubleLettersOf, [""], [""]],
   [doubleLettersOf, ["pool"], ["ppooooll"]]
