@@ -85,8 +85,8 @@ const charCodesOf = function (strings) {
   return strings.map(charCodes);
 };
 
-// // extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
-// const domainNamesOf = function (emails) { };
+// extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
+const domainNamesOf = function (emails) { };
 
 // // split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
 // const splitWordsOf = function (strings) { };
@@ -465,6 +465,14 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForDomains = [
+  [domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"],
+    ["gmail.com", "yahoo.com"]],
+  [domainNamesOf, ["user1@gmail.com"], ["gmail.com"]],
+  [domainNamesOf, [""], [""]],
+  [domainNamesOf, [], []],
+];
+
 const testCasesForCharCodes = [
   [charCodesOf, ["a", "b", "c"], [97, 98, 99]],
   [charCodesOf, ["a"], [97]]
@@ -534,7 +542,7 @@ const testCases = [
   ...testForUpperCaseOf, ...testCasesForFirstCharacter,
   ...testCasesForTruthValues, ...testCasesForReversedStrings,
   ...testCasesForDoubleLetters, ...testCasesForNegatedBooleans,
-  ...testCasesForCharCodes
+  ...testCasesForCharCodes, ...testCasesForDomains
 ];
 
 testAll(testCases);
