@@ -75,9 +75,15 @@ const negatedBooleansOf = function (booleans) {
   return booleans.map(negateBoolean);
 };
 
-// // character codes of ["a", "b", "c"] => [97, 98, 99]
-// // Use the `charCodeAt` method on each string
-// const charCodesOf = function (strings) { };
+// character codes of ["a", "b", "c"] => [97, 98, 99]
+// Use the `charCodeAt` method on each string
+const charCodes = function (letter) {
+  return letter !== '' ? letter.charCodeAt(0) : '';
+};
+
+const charCodesOf = function (strings) {
+  return strings.map(charCodes);
+};
 
 // // extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
 // const domainNamesOf = function (emails) { };
@@ -459,6 +465,11 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForCharCodes = [
+  [charCodesOf, ["a", "b", "c"], [97, 98, 99]],
+  [charCodesOf, ["a"], [97]]
+];
+
 const testCasesForNegatedBooleans = [
   [negatedBooleansOf, [true, false, true], [false, true, false]],
   [negatedBooleansOf, [true], [false]],
@@ -522,7 +533,8 @@ const testCases = [
   ...testCasesForSquaresOf, ...testCasesForLengthsOf,
   ...testForUpperCaseOf, ...testCasesForFirstCharacter,
   ...testCasesForTruthValues, ...testCasesForReversedStrings,
-  ...testCasesForDoubleLetters, ...testCasesForNegatedBooleans
+  ...testCasesForDoubleLetters, ...testCasesForNegatedBooleans,
+  ...testCasesForCharCodes
 ];
 
 testAll(testCases);
