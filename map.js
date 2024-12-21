@@ -44,8 +44,8 @@ const truthValuesOf = function (numbers) {
   return numbers.map(truthValues);
 };
 
-// // reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
-// const reversedStringsOf = function (strings) { };
+// reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
+const reversedStringsOf = function (strings) { };
 
 // // double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoog", "bbaatt"]
 // const doubleLettersOf = function (strings) { };
@@ -445,6 +445,13 @@ const testCasesForTruthValues = [
   [truthValuesOf, [], []]
 ];
 
+const testCasesForReversedStrings = [
+  [reversedStringsOf, ["hello", "world"], ["olleh", "dlrow"]],
+  [reversedStringsOf, ["hello"], ["olleh"]],
+  [reversedStringsOf, [""], [""]],
+  [reversedStringsOf, [], []]
+];
+
 const testCasesForFirstCharacter = [
   [firstCharactersOf, ["apple", "banana", "kiwi"], ["a", "b", "k"]],
   [firstCharactersOf, ["apple", "", "kiwi"], ["a", "", "k"]],
@@ -478,7 +485,7 @@ const testCasesForSquaresOf = [
 const testCases = [
   ...testCasesForSquaresOf, ...testCasesForLengthsOf,
   ...testForUpperCaseOf, ...testCasesForFirstCharacter,
-  ...testCasesForTruthValues
+  ...testCasesForTruthValues, ...testCasesForReversedStrings
 ];
 
 testAll(testCases);
