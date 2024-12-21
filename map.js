@@ -34,9 +34,9 @@ const firstCharactersOf = function (strings) {
   return strings.map(firstCharacter);
 };
 
-// // truth values of [0, 1, 2, 3] => [false, true, true, true]
-// // Assume non-zero numbers are true, and zero is false
-// const truthValuesOf = function (numbers) { };
+// truth values of [0, 1, 2, 3] => [false, true, true, true]
+// Assume non-zero numbers are true, and zero is false
+const truthValuesOf = function (numbers) { };
 
 // // reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
 // const reversedStringsOf = function (strings) { };
@@ -431,6 +431,14 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForTruthValues = [
+  [truthValuesOf, [0, 1, 2, 3], [false, true, true, true]],
+  [truthValuesOf, [0, 1, 2, -3], [false, true, true, true]],
+  [truthValuesOf, [0], [false]],
+  [truthValuesOf, [1], [true]],
+  [truthValuesOf, [], []]
+];
+
 const testCasesForFirstCharacter = [
   [firstCharactersOf, ["apple", "banana", "kiwi"], ["a", "b", "k"]],
   [firstCharactersOf, ["apple", "", "kiwi"], ["a", "", "k"]],
@@ -463,7 +471,8 @@ const testCasesForSquaresOf = [
 
 const testCases = [
   ...testCasesForSquaresOf, ...testCasesForLengthsOf,
-  ...testForUpperCaseOf, ...testCasesForFirstCharacter
+  ...testForUpperCaseOf, ...testCasesForFirstCharacter,
+  ...testCasesForTruthValues
 ];
 
 testAll(testCases);
