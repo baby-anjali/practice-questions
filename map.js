@@ -373,3 +373,21 @@ const summarizeBookChapters = function (books) { };
 // [{name: "Concert", attendees: [{firstName: "John", lastName: "Doe"}, {firstName: "Jane", lastName: "Smith"}]}, {name: "Conference", attendees: [{firstName: "Bob", lastName: "Brown"}]}]
 // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 const getEventAttendees = function (events) { };
+
+const testEach = function (outcome, [funcName, inputs, expected]) {
+  const actual = funcName(inputs);
+
+  outcome.push([funcName, inputs, actual, expected]);
+};
+
+const testAll = function (testCases) {
+  const outcome = testCases.reduce(testEach, []);
+
+  console.table(outcome);
+};
+
+const testCasesForSquaresOf = [
+  [squaresOf, [1, 2, 3], [1, 4, 9]]
+];
+
+const testCases = [...testCasesForSquaresOf];
