@@ -27,7 +27,7 @@ const uppercaseOf = function (strings) {
 
 // first characters of ["apple", "banana", "kiwi"] => ["a", "b", "k"]
 const firstCharacter = function (string) {
-  return string[1];
+  return string !== '' ? string[0] : '';
 };
 
 const firstCharactersOf = function (strings) {
