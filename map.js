@@ -406,6 +406,14 @@ const testAll = function (testCases) {
   console.table(outcome);
 };
 
+const testForUpperCaseOf = [
+  [uppercaseOf, ["hello", "world"], ["HELLO", "WORLD"]],
+  [uppercaseOf, ["hello", "wor ld"], ["HELLO", "WOR LD"]],
+  [uppercaseOf, ["hello"], ["HELLO"]],
+  [uppercaseOf, [""], [""]],
+  [uppercaseOf, [], []]
+];
+
 const testCasesForLengthsOf = [
   [lengthsOf, ["apple", "banana", "kiwi"], [5, 6, 4]],
   [lengthsOf, ["", "banana", "kiwi"], [0, 6, 4]],
@@ -421,6 +429,9 @@ const testCasesForSquaresOf = [
   [squaresOf, [], []]
 ];
 
-const testCases = [...testCasesForSquaresOf, ...testCasesForLengthsOf];
+const testCases = [
+  ...testCasesForSquaresOf, ...testCasesForLengthsOf,
+  ...testForUpperCaseOf
+];
 
 testAll(testCases);
