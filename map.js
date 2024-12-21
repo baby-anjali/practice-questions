@@ -81,6 +81,7 @@ const charCodes = function (letter) {
   return letter.charCodeAt(0);
 };
 
+
 const charCodesOf = function (strings) {
   return strings.map(charCodes);
 };
