@@ -86,7 +86,15 @@ const charCodesOf = function (strings) {
 };
 
 // extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
-const domainNamesOf = function (emails) { };
+const domains = function (email) {
+  const domainIndex = email.indexOf('@') + 1;
+
+  return email.substring(domainIndex);
+};
+
+const domainNamesOf = function (emails) {
+  return emails.map(domains);
+};
 
 // // split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
 // const splitWordsOf = function (strings) { };
