@@ -406,18 +406,23 @@ const areArraysEqual = function (array1, array2) {
   return true;
 };
 
-const testEach = function (outcome, [funcName, inputs, expected]) {
+const testEach = function (failed, [funcName, inputs, expected]) {
   const actual = funcName(inputs);
 
-  outcome.push([funcName, inputs, actual, expected]);
+  if (!areArraysEqual(actual, expected)) {
+    failed.push([funcName, inputs, actual, expected]);
+  }
 
-  return outcome;
+  return failed;
 };
 
 const testAll = function (testCases) {
-  const outcome = testCases.reduce(testEach, []);
+  const failed = testCases.reduce(testEach, []);
 
-  console.table(outcome);
+  const percent = (testCases.length - failed.length) / testCases.length * 100;
+  console.log(percent, "% passing!");
+
+  console.table(failed);
 };
 
 const testForUpperCaseOf = [
