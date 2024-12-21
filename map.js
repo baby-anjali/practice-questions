@@ -53,8 +53,8 @@ const reversedStringsOf = function (strings) {
   return strings.map(reverseString);
 };
 
-// // double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoogg", "bbaatt"]
-// const doubleLettersOf = function (strings) { };
+// double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoogg", "bbaatt"]
+const doubleLettersOf = function (strings) { };
 
 // // boolean negation of [true, false, true] => [false, true, false]
 // const negatedBooleansOf = function (booleans) { };
@@ -443,6 +443,13 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForDoubleLetters = [
+  [doubleLettersOf, ["cat", "dog", "bat"], ["ccaat", "ddoogg", "bbaatt"]],
+  [doubleLettersOf, ["bat"], ["bbaatt"]],
+  [doubleLettersOf, [""], [""]],
+  [doubleLettersOf, ["pool"], ["ppooooll"]]
+];
+
 const testCasesForTruthValues = [
   [truthValuesOf, [0, 1, 2, 3], [false, true, true, true]],
   [truthValuesOf, [0, 1, 2, -3], [false, true, true, true]],
@@ -491,7 +498,8 @@ const testCasesForSquaresOf = [
 const testCases = [
   ...testCasesForSquaresOf, ...testCasesForLengthsOf,
   ...testForUpperCaseOf, ...testCasesForFirstCharacter,
-  ...testCasesForTruthValues, ...testCasesForReversedStrings
+  ...testCasesForTruthValues, ...testCasesForReversedStrings,
+  ...testCasesForDoubleLetters
 ];
 
 testAll(testCases);
