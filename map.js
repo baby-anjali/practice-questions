@@ -96,8 +96,20 @@ const domainNamesOf = function (emails) {
   return emails.map(domains);
 };
 
-// // split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
-// const splitWordsOf = function (strings) { };
+// split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
+const splitChunks = function (init, word) {
+  init.push([].concat(word));
+
+  return init;
+};
+
+const splitWord = function (string) {
+  return string.split(' ').reduce(splitChunks, []);
+};
+
+const splitWordsOf = function (strings) {
+  return strings.map(splitWord);
+};
 
 // // join arrays of [["a", "b"], ["c", "d"]] => ["ab", "cd"]
 // const joinedArraysOf = function (arrayOfArrays) { };
@@ -456,7 +468,6 @@ const areArraysEqual = function (array1, array2) {
 
 const testEach = function (failed, [funcName, inputs, expected]) {
   const actual = funcName(inputs);
-
   if (!areArraysEqual(actual, expected)) {
     failed.push([funcName, inputs, expected, actual]);
   }
@@ -472,6 +483,13 @@ const testAll = function (testCases) {
 
   console.table(failed);
 };
+
+const testCasesForSplitWords = [
+  [splitWordsOf, ["hello world", "goodbye moon"],
+    [["hello", "world"], ["goodbye", "moon"]]],
+  [splitWordsOf, ["hello", "goodbye"], [["hello"], ["goodbye"]]],
+  [splitWordsOf, [""], [[""]]]
+];
 
 const testCasesForDomains = [
   [domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"],
@@ -550,7 +568,8 @@ const testCases = [
   ...testForUpperCaseOf, ...testCasesForFirstCharacter,
   ...testCasesForTruthValues, ...testCasesForReversedStrings,
   ...testCasesForDoubleLetters, ...testCasesForNegatedBooleans,
-  ...testCasesForCharCodes, ...testCasesForDomains
+  ...testCasesForCharCodes, ...testCasesForDomains,
+  ...testCasesForSplitWords
 ];
 
 testAll(testCases);
