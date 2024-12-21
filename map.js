@@ -97,14 +97,8 @@ const domainNamesOf = function (emails) {
 };
 
 // split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
-const splitChunks = function (init, word) {
-  init.push([].concat(word));
-
-  return init;
-};
-
 const splitWord = function (string) {
-  return string.split(' ').reduce(splitChunks, []);
+  return string.split(' ');
 };
 
 const splitWordsOf = function (strings) {
@@ -452,7 +446,7 @@ const splitWordsOf = function (strings) {
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
 
-const areArraysEqual = function (array1, array2) {
+const areEqual = function (array1, array2) {
   if (array1.length !== array2.length) {
     return false;
   }
@@ -466,8 +460,27 @@ const areArraysEqual = function (array1, array2) {
   return true;
 };
 
+const areArraysEqual = function (array1, array2) {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+
+  if (!Array.isArray(array1[0])) {
+    return areEqual(array1, array2);
+  }
+
+  for (let index = 0; index < array1.length; index++) {
+    if (!areArraysEqual(array1[index], array2[index])) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
 const testEach = function (failed, [funcName, inputs, expected]) {
   const actual = funcName(inputs);
+
   if (!areArraysEqual(actual, expected)) {
     failed.push([funcName, inputs, expected, actual]);
   }
