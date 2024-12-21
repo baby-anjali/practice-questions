@@ -7,8 +7,14 @@ const squaresOf = function (numbers) {
   return numbers.map(squares);
 };
 
-// // lengths of ["apple", "banana", "kiwi"] => [5, 6, 4]
-// const lengthsOf = function (strings) { };
+// lengths of ["apple", "banana", "kiwi"] => [5, 6, 4]
+const lengths = function (string) {
+  return string.length;
+};
+
+const lengthsOf = function (strings) {
+  return strings.map(lengths);
+};
 
 // // uppercase of ["hello", "world"] => ["HELLO", "WORLD"]
 // const uppercaseOf = function (strings) { };
