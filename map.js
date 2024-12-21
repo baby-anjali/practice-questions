@@ -392,6 +392,20 @@ const uppercaseOf = function (strings) {
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
 
+const areArraysEqual = function (array1, array2) {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+
+  for (let index = 0; index < array1.length; index++) {
+    if (array1[index] !== array2[index]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
 const testEach = function (outcome, [funcName, inputs, expected]) {
   const actual = funcName(inputs);
 
