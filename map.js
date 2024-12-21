@@ -54,12 +54,12 @@ const reversedStringsOf = function (strings) {
 };
 
 // double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoogg", "bbaatt"]
-const doubleEach = function (letter) {
-  return letter + letter;
+const double = function (character) {
+  return character + character;
 };
 
 const doubleLetters = function (string) {
-  return string.split('').map(doubleEach).join('');
+  return string.split('').map(double).join('');
 };
 
 const doubleLettersOf = function (strings) {
