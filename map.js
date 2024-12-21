@@ -66,8 +66,8 @@ const doubleLettersOf = function (strings) {
   return strings.map(doubleLetters);
 };
 
-// // boolean negation of [true, false, true] => [false, true, false]
-// const negatedBooleansOf = function (booleans) { };
+// boolean negation of [true, false, true] => [false, true, false]
+const negatedBooleansOf = function (booleans) { return []; };
 
 // // character codes of ["a", "b", "c"] => [97, 98, 99]
 // // Use the `charCodeAt` method on each string
@@ -453,6 +453,13 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForNegatedBooleans = [
+  [negatedBooleansOf, [true, false, true], [false, true, false]],
+  [negatedBooleansOf, [true], [false]],
+  [negatedBooleansOf, [false], [true]],
+  [negatedBooleansOf, [], []]
+];
+
 const testCasesForDoubleLetters = [
   [doubleLettersOf, ["cat", "dog", "bat"], ["ccaatt", "ddoogg", "bbaatt"]],
   [doubleLettersOf, ["bat"], ["bbaatt"]],
@@ -509,7 +516,7 @@ const testCases = [
   ...testCasesForSquaresOf, ...testCasesForLengthsOf,
   ...testForUpperCaseOf, ...testCasesForFirstCharacter,
   ...testCasesForTruthValues, ...testCasesForReversedStrings,
-  ...testCasesForDoubleLetters
+  ...testCasesForDoubleLetters, ...testCasesForNegatedBooleans
 ];
 
 testAll(testCases);
