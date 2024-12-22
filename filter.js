@@ -47,6 +47,10 @@ const filterLongBooks = function (books) {
 };
 
 // users with incomplete profiles [{username: "alice", profileComplete: true}, {username: "bob", profileComplete: false}] => [{username: "bob", profileComplete: false}]
+const hasIncompleteProfile = function (user) {
+  return !user.profileComplete;
+};
+
 const filterIncompleteProfiles = function (users) {
   return users.filter(hasIncompleteProfile);
 };
@@ -451,12 +455,12 @@ const testAll = function (testCases) {
 const testCasesForFilterIncompleteProfile = [
   [filterIncompleteProfiles, [{ username: "alice", profileComplete: true },
   { username: "bob", profileComplete: false }],
-    [{ username: "bob", profileComplete: false }]]
+    [{ username: "bob", profileComplete: false }]],
   [filterIncompleteProfiles,
-  [{ username: "alice", profileComplete: true }], []]
+    [{ username: "alice", profileComplete: true }], []],
   [filterIncompleteProfiles, [{ username: "bob", profileComplete: false }],
-  [{ username: "bob", profileComplete: false }]]
-  [filterIncompleteProfiles, [], []],
+    [{ username: "bob", profileComplete: false }]],
+  [filterIncompleteProfiles, [], []]
 ];
 
 const testCasesForFilterLongBooks = [
