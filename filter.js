@@ -89,7 +89,6 @@ const filterRecentOrders = function (orders) {
   return orders.filter(isRecentOrders);
 };
 
-// products with a price lower than the average [{name: "item1", price: 10}, {name: "item2", price: 20}, {name: "item3", price: 5}] => [{name: "item1", price: 10}, {name: "item3", price: 5}]
 const sum = function (initial, product) {
   const total = initial + product.price;
 
