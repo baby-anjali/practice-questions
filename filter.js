@@ -125,7 +125,6 @@ const filterRecentActiveUsers = function (users) {
   return users.filter(isRecentActive);
 };
 
-// students who passed all subjects [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}, {name: "Jane", subjects: [{name: "Math", passed: false}, {name: "Science", passed: true}]}] => [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}]
 const allPassed = function (subject) {
   return subject.passed;
 };
