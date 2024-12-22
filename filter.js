@@ -126,18 +126,16 @@ const filterRecentActiveUsers = function (users) {
 };
 
 // students who passed all subjects [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}, {name: "Jane", subjects: [{name: "Math", passed: false}, {name: "Science", passed: true}]}] => [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}]
-const allPassed = function (student) {
-  for (const subject of student.name) {
-    if (!subject.passed) {
-      return false;
-    }
-  }
+const allPassed = function (subject) {
+  return subject.passed;
+};
 
-  return true;
+const IsPassingAll = function (student) {
+  return (student.subjects).every(allPassed);
 };
 
 const filterStudentsWithAllSubjectsPassed = function (students) {
-  return students.filter(allPassed);
+  return students.filter(IsPassingAll);
 };
 
 // // people whose birthday is this month [{name: "Alice", birthDate: "2024-12-01"}, {name: "Bob", birthDate: "2024-11-01"}] => [{name: "Alice", birthDate: "2024-12-01"}]
@@ -652,7 +650,8 @@ const testCases = [
   ...testCasesForFilterGreaterThanTen, ...testCasesForFilterLongBooks,
   ...testCasesForFilterIncompleteProfile, ...testCasesForFilterHighGrades,
   ...testCasesForFilterInStock, ...testCasesForFilterRecentOrders,
-  ...testCasesForBelowAveragePrice, ...testCasesForFilterRecentActiveUsers
+  ...testCasesForBelowAveragePrice, ...testCasesForFilterRecentActiveUsers,
+  ...testCasesForAllPassingStudents
 ];
 
 testAll(testCases);
