@@ -41,13 +41,11 @@ const truthValuesOf = function (numbers) {
 };
 
 const reverseString = function (string) {
-  let reverse = '';
-
-  for (let index = string.length; index >= 0; index--) {
-    reverse += string[index];
+  if (string === '') {
+    return '';
   }
 
-  return reverse;
+  return reverseString(string.slice(1)) + string[0];
 };
 
 const reversedStringsOf = function (strings) {
@@ -169,9 +167,7 @@ const cumulativeSumsOf = function (arrays) {
 };
 
 const reverseWords = function (string) {
-  const stringArray = string.split(' ');
-
-  return reversedStringsOf(stringArray).join(' ');
+  return reversedStringsOf(string.split(' ')).join(' ');
 };
 
 const reversedWordsOf = function (strings) {
