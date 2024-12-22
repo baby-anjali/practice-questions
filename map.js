@@ -106,7 +106,6 @@ const repeatedStringsOf = function (strings) {
   return strings.map(double);
 };
 
-// count vowels in ["apple", "banana", "grape"] => [2, 3, 2]
 const isVowel = function (character) {
   return vowels.includes(character.toLowerCase());
 };
