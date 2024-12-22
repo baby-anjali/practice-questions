@@ -1,3 +1,5 @@
+const currentDate = '2024-12-22';
+
 const isEven = function (number) {
   return number % 2 === 0;
 };
@@ -57,6 +59,7 @@ const filterIncompleteProfiles = function (users) {
 const hasHighGrade = function (student) {
   return student.grade > 80;
 };
+
 const filterHighGrades = function (students) {
   return students.filter(hasHighGrade);
 };
@@ -80,8 +83,6 @@ function daysDifference(date1, date2) {
 }
 
 const isRecentOrders = function (order) {
-  const currentDate = '2024-12-22';
-
   return daysDifference(order.orderDate, currentDate) < 31;
 };
 
@@ -113,7 +114,11 @@ const filterBelowAveragePrice = function (products) {
 };
 
 // active users who posted in the last 7 days [{username: "alice", lastPostDate: "2024-12-01", active: true}, {username: "bob", lastPostDate: "2024-11-20", active: true}] => [{username: "alice", lastPostDate: "2024-12-01", active: true}]
-const filterRecentActiveUsers = function (users) { };
+// const ;
+
+const filterRecentActiveUsers = function (users) {
+  return users.filter(isRecentActive);
+};
 
 // // students who passed all subjects [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}, {name: "Jane", subjects: [{name: "Math", passed: false}, {name: "Science", passed: true}]}] => [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}]
 // const filterStudentsWithAllSubjectsPassed = function (students) { };
