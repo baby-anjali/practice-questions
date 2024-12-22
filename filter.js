@@ -114,7 +114,13 @@ const filterBelowAveragePrice = function (products) {
 };
 
 // active users who posted in the last 7 days [{username: "alice", lastPostDate: "2024-12-01", active: true}, {username: "bob", lastPostDate: "2024-11-20", active: true}] => [{username: "alice", lastPostDate: "2024-12-01", active: true}]
-// const ;
+const isRecentActive = function (user) {
+  if (!user.active) {
+    return false;
+  }
+
+  return daysDifference(user.lastPostDate, currentDate) <= 7;
+};
 
 const filterRecentActiveUsers = function (users) {
   return users.filter(isRecentActive);
