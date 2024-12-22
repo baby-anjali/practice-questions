@@ -162,8 +162,8 @@ const cumulativeSumsOf = function (arrays) {
   return arrays.map(runningTotal);
 };
 
-// // reverse words in ["hello world", "goodbye moon"] => ["olleh dlrow", "eybdoog noom"]
-// const reversedWordsOf = function (strings) { };
+// reverse words in ["hello world", "goodbye moon"] => ["olleh dlrow", "eybdoog noom"]
+const reversedWordsOf = function (strings) { };
 
 // // extract unique characters from ["apple", "banana", "grape"] => ["apl", "ban", "gra"]
 // // Maintain the order of their first appearance in each string
@@ -535,6 +535,14 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForReversedWords = [
+  [reversedWordsOf, ["hello world", "goodbye moon"],
+    ["olleh dlrow", "eybdoog noom"]],
+  [reversedWordsOf, ["hello"], ["olleh"]],
+  [reversedWordsOf, [""], [""]],
+  [reversedWordsOf, [], []]
+];
+
 const testCasesForCumulativeSums = [
   [cumulativeSumsOf, [[1, 2, 3], [4, 5, 6]], [[1, 3, 6], [4, 9, 15]]],
   [cumulativeSumsOf, [[1, 1, 3]], [[1, 2, 5]]],
@@ -665,7 +673,7 @@ const testCases = [
   ...testCasesForSplitWords, ...testCasesForJoinedArrays,
   ...testCasesForRepeatedStrings, ...testCasesForCountVowelsOf,
   ...testCasesForReversedArrays, ...testCasesForWithoutVowelsOf,
-  ...testCasesForCumulativeSums
+  ...testCasesForCumulativeSums, ...testCasesForReversedWords
 ];
 
 testAll(testCases);
