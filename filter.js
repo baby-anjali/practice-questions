@@ -22,8 +22,8 @@ const filterAdults = function (people) {
   return people.filter(isAdult);
 };
 
-// // active users [{username: "alice", active: true}, {username: "bob", active: false}] => [{username: "alice", active: true}]
-// const filterActiveUsers = function (users) { };
+// active users [{username: "alice", active: true}, {username: "bob", active: false}] => [{username: "alice", active: true}]
+const filterActiveUsers = function (users) { };
 
 // // numbers greater than 10 [5, 12, 7, 18, 3] => [12, 18]
 // const filterNumbersGreaterThanTen = function (numbers) { };
@@ -431,6 +431,16 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForFilterActiveUsers = [
+  [filterActiveUsers,
+    [{ username: "alice", active: true }, { username: "bob", active: false }],
+    [{ username: "alice", active: true }]],
+  [filterActiveUsers, [{ username: "alice", active: true }],
+    [{ username: "alice", active: true }]],
+  [filterActiveUsers, [{ username: "bob", active: false }], []],
+  [filterActiveUsers, [], []],
+];
+
 const testCasesForFilterAdults = [
   [filterAdults, [{ name: "Alice", age: 25 }, { name: "Bob", age: 35 }],
     [{ name: "Bob", age: 35 }]],
@@ -456,7 +466,7 @@ const testCasesForFilterEven = [
 
 const testCases = [
   ...testCasesForFilterEven, ...testCasesForFilterLongWords,
-  ...testCasesForFilterAdults
+  ...testCasesForFilterAdults, ...testCasesForFilterActiveUsers
 ];
 
 testAll(testCases);
