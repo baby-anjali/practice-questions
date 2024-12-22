@@ -93,7 +93,13 @@ const splitWordsOf = function (strings) {
 };
 
 // join arrays of [["a", "b"], ["c", "d"]] => ["ab", "cd"]
-const joinedArraysOf = function (arrayOfArrays) { };
+const joinedArray = function (array) {
+  return array.join('');
+};
+
+const joinedArraysOf = function (arrayOfArrays) {
+  return arrayOfArrays.map(joinedArray);
+};
 
 // // repeat strings in ["hi", "bye"] => ["hihi", "byebye"]
 // const repeatedStringsOf = function (strings) { };
@@ -488,7 +494,7 @@ const testCasesForJoinedArrays = [
   [joinedArraysOf, [["a", "b"], ["c", "d"]], ["ab", "cd"]],
   [joinedArraysOf, [["a", "b"], ["c", ""]], ["ab", "c"]],
   [joinedArraysOf, [["a", "b"]], ["ab"]],
-  [joinedArraysOf, [["", ""]], [""]]
+  [joinedArraysOf, [["", ""]], [""]],
 ];
 
 const testCasesForSplitWords = [
