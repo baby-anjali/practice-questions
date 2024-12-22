@@ -562,6 +562,14 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForRangesOf = [
+  [rangesOf, [3, 5, 2], [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]],
+  [rangesOf, [5, 2], [[0, 1, 2, 3, 4], [0, 1]]],
+  [rangesOf, [2], [[0, 1]]],
+  [rangesOf, [0], [[]]],
+  [rangesOf, [], []]
+];
+
 const testCasesForUniqueCharacters = [
   [uniqueCharactersOf, ["apple", "banana", "grape"], ["apl", "ban", "gra"]],
   [uniqueCharactersOf, ["company"], ["com"]],
@@ -708,7 +716,7 @@ const testCases = [
   ...testCasesForRepeatedStrings, ...testCasesForCountVowelsOf,
   ...testCasesForReversedArrays, ...testCasesForWithoutVowelsOf,
   ...testCasesForCumulativeSums, ...testCasesForReversedWords,
-  ...testCasesForUniqueCharacters
+  ...testCasesForUniqueCharacters, ...testCasesForRangesOf
 ];
 
 testAll(testCases);
