@@ -92,8 +92,8 @@ const splitWordsOf = function (strings) {
   return strings.map(splitWord);
 };
 
-// // join arrays of [["a", "b"], ["c", "d"]] => ["ab", "cd"]
-// const joinedArraysOf = function (arrayOfArrays) { };
+// join arrays of [["a", "b"], ["c", "d"]] => ["ab", "cd"]
+const joinedArraysOf = function (arrayOfArrays) { };
 
 // // repeat strings in ["hi", "bye"] => ["hihi", "byebye"]
 // const repeatedStringsOf = function (strings) { };
@@ -484,6 +484,13 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForJoinedArrays = [
+  [joinedArraysOf, [["a", "b"], ["c", "d"]], ["ab", "cd"]],
+  [joinedArraysOf, [["a", "b"], ["c", ""]], ["ab", "c"]],
+  [joinedArraysOf, [["a", "b"]], ["ab"]],
+  [joinedArraysOf, [["", ""]], [""]]
+];
+
 const testCasesForSplitWords = [
   [splitWordsOf, ["hello world", "goodbye moon"],
     [["hello", "world"], ["goodbye", "moon"]]],
@@ -569,7 +576,7 @@ const testCases = [
   ...testCasesForTruthValues, ...testCasesForReversedStrings,
   ...testCasesForDoubleLetters, ...testCasesForNegatedBooleans,
   ...testCasesForCharCodes, ...testCasesForDomains,
-  ...testCasesForSplitWords
+  ...testCasesForSplitWords, ...testCasesForJoinedArrays
 ];
 
 testAll(testCases);
