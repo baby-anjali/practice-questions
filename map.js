@@ -129,6 +129,10 @@ const reversedArraysOf = function (arrays) {
 };
 
 // remove vowels from ["apple", "banana", "grape"] => ["ppl", "bnn", "grp"]
+const removeVowels = function (string) {
+  return string.split('').filter(invert(isVowel)).join('');
+};
+
 const withoutVowelsOf = function (strings) {
   return strings.map(removeVowels);
 };
