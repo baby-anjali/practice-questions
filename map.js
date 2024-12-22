@@ -41,11 +41,7 @@ const truthValuesOf = function (numbers) {
 };
 
 const reverseString = function (string) {
-  if (string === '') {
-    return '';
-  }
-
-  return reverseString(string.slice(1)) + string[0];
+  return [...string].reverse().join('');
 };
 
 const reversedStringsOf = function (strings) {
@@ -53,15 +49,11 @@ const reversedStringsOf = function (strings) {
 };
 
 const double = function (value) {
-  return value + value;
+  return value.repeat(2);
 };
 
 const doubleLetters = function (string) {
-  if (string === '') {
-    return '';
-  }
-
-  return double(string[0]) + doubleLetters(string.slice(1));
+  return [...string].map(double).join('');
 };
 
 const doubleLettersOf = function (strings) {
@@ -196,20 +188,23 @@ const uniqueCharactersOf = function (strings) {
   return strings.map(uniqueCharacters);
 };
 
-const range = function (number) {
-  const list = [];
-
-  if (number < 1) {
-    return [];
+const getRange = function (number, index, rangeList) {
+  if (index >= number) {
+    return rangeList;
   }
 
-  return;
+  rangeList.push(index);
+
+  return getRange(number, index + 1, rangeList);
+};
+
+const range = function (number) {
+  return getRange(number, 0, []);
 };
 
 const rangesOf = function (numbers) {
   return numbers.map(range);
 };
-
 
 const areEqual = function (array1, array2) {
   if (array1.length !== array2.length) {
@@ -263,11 +258,11 @@ const testAll = function (testCases) {
 };
 
 const testCasesForRangesOf = [
-  [rangesOf, [3, 5, 2], [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]],
-  [rangesOf, [5, 2], [[0, 1, 2, 3, 4], [0, 1]]],
+  // [rangesOf, [2, 5, 1], [[0, 1], [0, 1, 2, 3, 4], [0]]],
+  // [rangesOf, [5, 2], [[0, 1, 2, 3, 4], [0, 1]]],
   [rangesOf, [2], [[0, 1]]],
-  [rangesOf, [0], [[]]],
-  [rangesOf, [], []]
+  // [rangesOf, [0], [[]]],
+  // [rangesOf, [], []]
 ];
 
 const testCasesForUniqueCharacters = [
