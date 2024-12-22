@@ -119,6 +119,10 @@ const isRecentActive = function (user) {
     return false;
   }
 
+  console.log(user.lastPostDate);
+
+  console.log(daysDifference(user.lastPostDate, currentDate));
+
   return daysDifference(user.lastPostDate, currentDate) <= 7;
 };
 
@@ -506,15 +510,14 @@ const testAll = function (testCases) {
 
 const testCasesForFilterRecentActiveUsers = [
   [filterRecentActiveUsers,
-    [{ username: "alice", lastPostDate: "2024-12-01", active: true },
+    [{ username: "alice", lastPostDate: "2024-12-21", active: true },
     { username: "bob", lastPostDate: "2024-11-20", active: true }],
-    [{ username: "alice", lastPostDate: "2024-12-01", active: true }]],
+    [{ username: "alice", lastPostDate: "2024-12-21", active: true }]],
   [filterRecentActiveUsers,
-    [{ username: "alice", lastPostDate: "2024-12-01", active: false },
+    [{ username: "alice", lastPostDate: "2024-12-21", active: false },
     { username: "bob", lastPostDate: "2024-11-20", active: true }], []],
   [filterRecentActiveUsers,
-    [{ username: "bob", lastPostDate: "2024-11-20", active: true }],
-    [{ username: "alice", lastPostDate: "2024-12-01", active: true }]],
+    [{ username: "bob", lastPostDate: "2024-11-20", active: true }], []],
   [filterRecentActiveUsers, [], []]
 ];
 
