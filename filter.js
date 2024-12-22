@@ -69,8 +69,8 @@ const filterInStockProducts = function (products) {
   return products.filter(isInStock);
 };
 
-// // orders placed in the last 30 days [{orderDate: "2024-11-01"}, {orderDate: "2024-12-01"}] => [{orderDate: "2024-12-01"}]
-// const filterRecentOrders = function (orders) { };
+// orders placed in the last 30 days [{orderDate: "2024-11-01"}, {orderDate: "2024-12-01"}] => [{orderDate: "2024-12-01"}]
+const filterRecentOrders = function (orders) { };
 
 // // products with a price lower than the average [{name: "item1", price: 10}, {name: "item2", price: 20}, {name: "item3", price: 5}] => [{name: "item1", price: 10}, {name: "item3", price: 5}]
 // const filterBelowAveragePrice = function (products) { };
@@ -456,6 +456,17 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForFilterRecentOrders = [
+  [filterRecentOrders,
+    [{ orderDate: "2024-11-01" }, { orderDate: "2024-12-01" }],
+    [{ orderDate: "2024-12-01" }]],
+  [filterRecentOrders,
+    [{ orderDate: "2024-12-01" }], [{ orderDate: "2024-12-01" }]],
+  [filterRecentOrders,
+    [{ orderDate: "2024-11-01" }], []],
+  [filterRecentOrders, [], []]
+];
+
 const testCasesForFilterInStock = [
   [filterInStockProducts, [{ product: "apple", inStock: true },
   { product: "banana", inStock: false }],
@@ -542,7 +553,7 @@ const testCases = [
   ...testCasesForFilterAdults, ...testCasesForFilterActiveUsers,
   ...testCasesForFilterGreaterThanTen, ...testCasesForFilterLongBooks,
   ...testCasesForFilterIncompleteProfile, ...testCasesForFilterHighGrades,
-  ...testCasesForFilterInStock
+  ...testCasesForFilterInStock, ...testCasesForFilterRecentOrders
 ];
 
 testAll(testCases);
