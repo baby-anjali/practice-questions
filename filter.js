@@ -126,7 +126,19 @@ const filterRecentActiveUsers = function (users) {
 };
 
 // students who passed all subjects [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}, {name: "Jane", subjects: [{name: "Math", passed: false}, {name: "Science", passed: true}]}] => [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}]
-const filterStudentsWithAllSubjectsPassed = function (students) { };
+const allPassed = function (student) {
+  for (const subject of student.name) {
+    if (!subject.passed) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const filterStudentsWithAllSubjectsPassed = function (students) {
+  return students.filter(allPassed);
+};
 
 // // people whose birthday is this month [{name: "Alice", birthDate: "2024-12-01"}, {name: "Bob", birthDate: "2024-11-01"}] => [{name: "Alice", birthDate: "2024-12-01"}]
 // const filterBirthdaysThisMonth = function (people) { };
