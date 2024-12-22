@@ -70,7 +70,29 @@ const filterInStockProducts = function (products) {
 };
 
 // orders placed in the last 30 days [{orderDate: "2024-11-01"}, {orderDate: "2024-12-01"}] => [{orderDate: "2024-12-01"}]
-const filterRecentOrders = function (orders) { };
+function getDaysDifference(date1, date2) {
+  let startDate = new Date(date1);
+  let endDate = new Date(date2);
+
+  // startDate.setHours(0, 0, 0, 0);
+  // endDate.setHours(0, 0, 0, 0);
+
+  let diffMillis = endDate - startDate;
+
+  let diffDays = diffMillis / (1000 * 60 * 60 * 24);
+
+  return Math.floor(diffDays);
+}
+
+// Example usage:
+
+const isRecentOrders = function (order) {
+  return;
+};
+
+const filterRecentOrders = function (orders) {
+  return orders.filter(isRecentOrders);
+};
 
 // // products with a price lower than the average [{name: "item1", price: 10}, {name: "item2", price: 20}, {name: "item3", price: 5}] => [{name: "item1", price: 10}, {name: "item3", price: 5}]
 // const filterBelowAveragePrice = function (products) { };
