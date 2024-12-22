@@ -14,7 +14,6 @@ const filterLongWords = function (words) {
   return words.filter(isLong);
 };
 
-// people older than 30 [{name: "Alice", age: 25}, {name: "Bob", age: 35}] => [{name: "Bob", age: 35}]
 const isAdult = function (person) {
   return person.age > 30;
 };
@@ -386,27 +385,22 @@ const areArraysEqual = function (array1, array2) {
   return true;
 };
 
-const areObjectsEqual = function (obj1, obj2) {
-  if (typeof obj1 !== typeof obj2) {
-    return false;
-  }
-
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
+const areObjectsEqual = function (actual, expected) {
+  const keys1 = Object.keys(actual);
+  const keys2 = Object.keys(expected);
 
   if (keys1.length !== keys2.length) return false;
 
-  for (let key of keys1) {
+  for (const key of keys1) {
     if (!keys2.includes(key)) return false;
-
-    if (obj1[key] !== obj2[key]) return false;
+    if (!areEqual(actual[key], expected[key])) return false;
   }
 
   return true;
 };
 
 const areEqual = function (actual, expected) {
-  if (typeof value === 'object' && typeof value === 'object') {
+  if (typeof actual === 'object' && typeof expected === 'object') {
     return areObjectsEqual(actual, expected);
   }
 
@@ -439,7 +433,10 @@ const testAll = function (testCases) {
 
 const testCasesForFilterAdults = [
   [filterAdults, [{ name: "Alice", age: 25 }, { name: "Bob", age: 35 }],
-    [{ name: "Bob", age: 35 }]]
+    [{ name: "Bob", age: 35 }]],
+  [filterAdults, [{ name: "Bob", age: 35 }], [{ name: "Bob", age: 35 }]],
+  [filterAdults, [{ name: "Alice", age: 5 }], []],
+  [filterAdults, [], []]
 ];
 
 const testCasesForFilterLongWords = [
