@@ -125,8 +125,8 @@ const filterRecentActiveUsers = function (users) {
   return users.filter(isRecentActive);
 };
 
-// // students who passed all subjects [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}, {name: "Jane", subjects: [{name: "Math", passed: false}, {name: "Science", passed: true}]}] => [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}]
-// const filterStudentsWithAllSubjectsPassed = function (students) { };
+// students who passed all subjects [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}, {name: "Jane", subjects: [{name: "Math", passed: false}, {name: "Science", passed: true}]}] => [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}]
+const filterStudentsWithAllSubjectsPassed = function (students) { };
 
 // // people whose birthday is this month [{name: "Alice", birthDate: "2024-12-01"}, {name: "Bob", birthDate: "2024-11-01"}] => [{name: "Alice", birthDate: "2024-12-01"}]
 // const filterBirthdaysThisMonth = function (people) { };
@@ -502,6 +502,22 @@ const testAll = function (testCases) {
 
   console.table(failed);
 };
+
+const testCasesForAllPassingStudents = [
+  [filterStudentsWithAllSubjectsPassed, [{
+    name: "John", subjects:
+      [{ name: "Math", passed: true }, { name: "Science", passed: true }]
+  },
+  {
+    name: "Jane", subjects:
+      [{ name: "Math", passed: false }, { name: "Science", passed: true }]
+  }],
+    [{ name: "John", subjects: [{ name: "Math", passed: true }, { name: "Science", passed: true }] }]],
+  [filterStudentsWithAllSubjectsPassed, [{
+    name: "Jane", subjects:
+      [{ name: "Math", passed: false }, { name: "Science", passed: true }]
+  }], []]
+];
 
 const testCasesForFilterRecentActiveUsers = [
   [filterRecentActiveUsers,
