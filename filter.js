@@ -69,33 +69,28 @@ const filterInStockProducts = function (products) {
   return products.filter(isInStock);
 };
 
-// orders placed in the last 30 days [{orderDate: "2024-11-01"}, {orderDate: "2024-12-01"}] => [{orderDate: "2024-12-01"}]
-function getDaysDifference(date1, date2) {
-  let startDate = new Date(date1);
-  let endDate = new Date(date2);
+function daysDifference(date1, date2) {
+  const startDate = new Date(date1);
+  const endDate = new Date(date2);
 
-  // startDate.setHours(0, 0, 0, 0);
-  // endDate.setHours(0, 0, 0, 0);
-
-  let diffMillis = endDate - startDate;
-
-  let diffDays = diffMillis / (1000 * 60 * 60 * 24);
+  const diffMillis = endDate - startDate;
+  const diffDays = diffMillis / (1000 * 60 * 60 * 24);
 
   return Math.floor(diffDays);
 }
 
-// Example usage:
-
 const isRecentOrders = function (order) {
-  return;
+  const currentDate = '2024-12-22';
+
+  return daysDifference(order.orderDate, currentDate) < 31;
 };
 
 const filterRecentOrders = function (orders) {
   return orders.filter(isRecentOrders);
 };
 
-// // products with a price lower than the average [{name: "item1", price: 10}, {name: "item2", price: 20}, {name: "item3", price: 5}] => [{name: "item1", price: 10}, {name: "item3", price: 5}]
-// const filterBelowAveragePrice = function (products) { };
+// products with a price lower than the average [{name: "item1", price: 10}, {name: "item2", price: 20}, {name: "item3", price: 5}] => [{name: "item1", price: 10}, {name: "item3", price: 5}]
+const filterBelowAveragePrice = function (products) { };
 
 // // active users who posted in the last 7 days [{username: "alice", lastPostDate: "2024-12-01", active: true}, {username: "bob", lastPostDate: "2024-11-20", active: true}] => [{username: "alice", lastPostDate: "2024-12-01", active: true}]
 // const filterRecentActiveUsers = function (users) { };
@@ -477,6 +472,16 @@ const testAll = function (testCases) {
 
   console.table(failed);
 };
+
+const testCasesForBelowAveragePrice = [
+  [filterBelowAveragePrice, [{ name: "item1", price: 10 },
+  { name: "item2", price: 20 }, { name: "item3", price: 5 }],
+    [{ name: "item1", price: 10 }, { name: "item3", price: 5 }]],
+  [filterBelowAveragePrice, [{ name: "item1", price: 10 },
+  { name: "item3", price: 5 }], [{ name: "item3", price: 5 }]],
+  [filterBelowAveragePrice, [{ name: "item1", price: 10 }], []],
+  [filterBelowAveragePrice, [], []],
+];
 
 const testCasesForFilterRecentOrders = [
   [filterRecentOrders,
