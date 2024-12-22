@@ -8,6 +8,10 @@ const filterEvenNumbers = function (numbers) {
 };
 
 // words with more than 5 letters ["apple", "banana", "kiwi", "grape"] => ["banana"]
+const isLong = function (word) {
+  return word.length > 5;
+};
+
 const filterLongWords = function (words) {
   return words.filter(isLong);
 };
@@ -379,6 +383,7 @@ const areArraysEqual = function (array1, array2) {
 };
 
 const testEach = function (failed, [funcName, inputs, expected]) {
+
   const actual = funcName(inputs);
 
   if (!areArraysEqual(actual, expected)) {
@@ -398,11 +403,11 @@ const testAll = function (testCases) {
 };
 
 const testCasesForFilterLongWords = [
-  [filterLongWords, ["apple", "banana", "kiwi", "grape"], ["banana"]]
+  [filterLongWords, ["apple", "banana", "kiwi", "grape"], ["banana"]],
   [filterLongWords, ["apple", "kiwi", "grape"], []],
-  [filterLongWords, ["banana"], ["banana"]]
+  [filterLongWords, ["banana"], ["banana"]],
   [filterLongWords, [""], []],
-  [filterLongWords, [], []],
+  [filterLongWords, [], []]
 ];
 
 const testCasesForFilterEven = [
