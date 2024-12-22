@@ -120,8 +120,8 @@ const countVowelsOf = function (strings) {
   return strings.map(countVowels);
 };
 
-// // reverse arrays of [[1, 2, 3], [4, 5, 6]] => [[3, 2, 1], [6, 5, 4]]
-// const reversedArraysOf = function (arrays) { };
+// reverse arrays of [[1, 2, 3], [4, 5, 6]] => [[3, 2, 1], [6, 5, 4]]
+const reversedArraysOf = function (arrays) { };
 
 // // remove vowels from ["apple", "banana", "grape"] => ["ppl", "bnn", "grp"]
 // const withoutVowelsOf = function (strings) { };
@@ -503,6 +503,11 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForReversedArrays = [
+  [reversedArraysOf, [[1, 2, 3], [4, 5, 6]], [[3, 2, 1], [6, 5, 4]]],
+  [reversedArraysOf, [[1]], [[1]]],
+];
+
 const testCasesForCountVowelsOf = [
   [countVowelsOf, ["apple", "banana", "grape"], [2, 3, 2]],
   [countVowelsOf, ["gym"], [0]],
@@ -611,7 +616,8 @@ const testCases = [
   ...testCasesForDoubleLetters, ...testCasesForNegatedBooleans,
   ...testCasesForCharCodes, ...testCasesForDomains,
   ...testCasesForSplitWords, ...testCasesForJoinedArrays,
-  ...testCasesForRepeatedStrings, ...testCasesForCountVowelsOf
+  ...testCasesForRepeatedStrings, ...testCasesForCountVowelsOf,
+  ...testCasesForReversedArrays
 ];
 
 testAll(testCases);
