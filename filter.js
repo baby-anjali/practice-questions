@@ -61,8 +61,8 @@ const filterHighGrades = function (students) {
   return students.filter(hasHighGrade);
 };
 
-// // products that are in stock [{product: "apple", inStock: true}, {product: "banana", inStock: false}] => [{product: "apple", inStock: true}]
-// const filterInStockProducts = function (products) { };
+// products that are in stock [{product: "apple", inStock: true}, {product: "banana", inStock: false}] => [{product: "apple", inStock: true}]
+const filterInStockProducts = function (products) { };
 
 // // orders placed in the last 30 days [{orderDate: "2024-11-01"}, {orderDate: "2024-12-01"}] => [{orderDate: "2024-12-01"}]
 // const filterRecentOrders = function (orders) { };
@@ -451,6 +451,16 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForFilterInStock = [
+  [filterInStockProducts, [{ product: "apple", inStock: true },
+  { product: "banana", inStock: false }],
+    [{ product: "apple", inStock: true }]],
+  [filterInStockProducts, [{ product: "apple", inStock: true }],
+    [{ product: "apple", inStock: true }]],
+  [filterInStockProducts, [{ product: "banana", inStock: false }], []],
+  [filterInStockProducts, [], []]
+];
+
 const testCasesForFilterHighGrades = [
   [filterHighGrades,
     [{ name: "John", grade: 75 }, { name: "Jane", grade: 85 }],
@@ -526,7 +536,8 @@ const testCases = [
   ...testCasesForFilterEven, ...testCasesForFilterLongWords,
   ...testCasesForFilterAdults, ...testCasesForFilterActiveUsers,
   ...testCasesForFilterGreaterThanTen, ...testCasesForFilterLongBooks,
-  ...testCasesForFilterIncompleteProfile, ...testCasesForFilterHighGrades
+  ...testCasesForFilterIncompleteProfile, ...testCasesForFilterHighGrades,
+  ...testCasesForFilterInStock
 ];
 
 testAll(testCases);
