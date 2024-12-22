@@ -167,7 +167,7 @@ const cumulativeSumsOf = function (arrays) {
 };
 
 const reverseWords = function (string) {
-  return reversedStringsOf(string.split(' ')).join(' ');
+  return string.replace(/\S+/g, reverseString);
 };
 
 const reversedWordsOf = function (strings) {
