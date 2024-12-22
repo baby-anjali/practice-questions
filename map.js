@@ -41,7 +41,13 @@ const truthValuesOf = function (numbers) {
 };
 
 const reverseString = function (string) {
-  return string.split('').reverse().join('');
+  let reverse = '';
+
+  for (let index = string.length; index >= 0; index--) {
+    reverse += string[index];
+  }
+
+  return reverse;
 };
 
 const reversedStringsOf = function (strings) {
@@ -162,7 +168,12 @@ const cumulativeSumsOf = function (arrays) {
   return arrays.map(runningTotal);
 };
 
-// reverse words in ["hello world", "goodbye moon"] => ["olleh dlrow", "eybdoog noom"]
+const reverseWords = function (string) {
+  const stringArray = string.split(' ');
+
+  return reversedStringsOf(stringArray).join(' ');
+};
+
 const reversedWordsOf = function (strings) {
   return strings.map(reverseWords);
 };
