@@ -188,18 +188,14 @@ const uniqueCharactersOf = function (strings) {
   return strings.map(uniqueCharacters);
 };
 
-const getRange = function (number, index, rangeList) {
-  if (index >= number) {
-    return rangeList;
+const range = function (number) {
+  const rangeList = [];
+
+  for (let value = 0; value < number; value++) {
+    rangeList.push(value);
   }
 
-  rangeList.push(index);
-
-  return getRange(number, index + 1, rangeList);
-};
-
-const range = function (number) {
-  return getRange(number, 0, []);
+  return rangeList;
 };
 
 const rangesOf = function (numbers) {
