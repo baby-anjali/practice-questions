@@ -146,7 +146,23 @@ const withoutVowelsOf = function (strings) {
 
 // cumulative sums of [[1, 2, 3], [4, 5, 6]] => [[1, 3, 6], [4, 9, 15]]
 // Example: cumulative sum of [1, 2, 3] is [1, 1+2, 1+2+3]
-const cumulativeSumsOf = function (arrays) { };
+const getRunningTotal = function (totals, value) {
+  totals.push(value + totals.at(-1));
+
+  return totals;
+};
+
+const runningTotal = function ([first, ...numbers]) {
+  if (first === undefined) {
+    return [];
+  }
+
+  return numbers.reduce(getRunningTotal, [first]);
+};
+
+const cumulativeSumsOf = function (arrays) {
+  return arrays.map(runningTotal);
+};
 
 // // reverse words in ["hello world", "goodbye moon"] => ["olleh dlrow", "eybdoog noom"]
 // const reversedWordsOf = function (strings) { };
@@ -650,7 +666,8 @@ const testCases = [
   ...testCasesForCharCodes, ...testCasesForDomains,
   ...testCasesForSplitWords, ...testCasesForJoinedArrays,
   ...testCasesForRepeatedStrings, ...testCasesForCountVowelsOf,
-  ...testCasesForReversedArrays, ...testCasesForWithoutVowelsOf
+  ...testCasesForReversedArrays, ...testCasesForWithoutVowelsOf,
+  ...testCasesForCumulativeSums
 ];
 
 testAll(testCases);
