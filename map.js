@@ -144,8 +144,6 @@ const withoutVowelsOf = function (strings) {
   return strings.map(removeVowels);
 };
 
-// cumulative sums of [[1, 2, 3], [4, 5, 6]] => [[1, 3, 6], [4, 9, 15]]
-// Example: cumulative sum of [1, 2, 3] is [1, 1+2, 1+2+3]
 const getRunningTotal = function (totals, value) {
   totals.push(value + totals.at(-1));
 
