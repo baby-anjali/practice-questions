@@ -1,3 +1,5 @@
+const vowels = 'aeiou';
+
 const square = function (number) {
   return number * number;
 };
@@ -105,7 +107,19 @@ const repeatedStringsOf = function (strings) {
 };
 
 // count vowels in ["apple", "banana", "grape"] => [2, 3, 2]
-const countVowelsOf = function (strings) { };
+const isVowel = function (character) {
+  return vowels.includes(character.toLowerCase());
+};
+
+const countVowels = function (string) {
+  const totalVowels = string.split('').filter(isVowel);
+
+  return totalVowels.length;
+};
+
+const countVowelsOf = function (strings) {
+  return strings.map(countVowels);
+};
 
 // // reverse arrays of [[1, 2, 3], [4, 5, 6]] => [[3, 2, 1], [6, 5, 4]]
 // const reversedArraysOf = function (arrays) { };
