@@ -1,13 +1,11 @@
-// squares of [1, 2, 3] => [1, 4, 9]
-const squares = function (number) {
+const square = function (number) {
   return number * number;
 };
 
 const squaresOf = function (numbers) {
-  return numbers.map(squares);
+  return numbers.map(square);
 };
 
-// lengths of ["apple", "banana", "kiwi"] => [5, 6, 4]
 const lengths = function (string) {
   return string.length;
 };
@@ -16,7 +14,6 @@ const lengthsOf = function (strings) {
   return strings.map(lengths);
 };
 
-// uppercase of ["hello", "world"] => ["HELLO", "WORLD"]
 const capitalise = function (string) {
   return string.toUpperCase();
 };
@@ -25,26 +22,22 @@ const uppercaseOf = function (strings) {
   return strings.map(capitalise);
 };
 
-// first characters of ["apple", "banana", "kiwi"] => ["a", "b", "k"]
 const firstCharacter = function (string) {
-  return string !== '' ? string[0] : '';
+  return string === '' ? '' : string[0];
 };
 
 const firstCharactersOf = function (strings) {
   return strings.map(firstCharacter);
 };
 
-// truth values of [0, 1, 2, 3] => [false, true, true, true]
-// Assume non-zero numbers are true, and zero is false
-const truthValues = function (number) {
+const truthValue = function (number) {
   return number !== 0;
 };
 
 const truthValuesOf = function (numbers) {
-  return numbers.map(truthValues);
+  return numbers.map(truthValue);
 };
 
-// reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
 const reverseString = function (string) {
   return string.split('').reverse().join('');
 };
@@ -53,9 +46,8 @@ const reversedStringsOf = function (strings) {
   return strings.map(reverseString);
 };
 
-// double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoogg", "bbaatt"]
-const double = function (character) {
-  return character + character;
+const double = function (value) {
+  return value + value;
 };
 
 const doubleLetters = function (string) {
@@ -66,7 +58,6 @@ const doubleLettersOf = function (strings) {
   return strings.map(doubleLetters);
 };
 
-// boolean negation of [true, false, true] => [false, true, false]
 const negateBoolean = function (boolean) {
   return !boolean;
 };
@@ -75,18 +66,14 @@ const negatedBooleansOf = function (booleans) {
   return booleans.map(negateBoolean);
 };
 
-// character codes of ["a", "b", "c"] => [97, 98, 99]
-// Use the `charCodeAt` method on each string
 const charCodes = function (letter) {
   return letter.charCodeAt(0);
 };
-
 
 const charCodesOf = function (strings) {
   return strings.map(charCodes);
 };
 
-// extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
 const domains = function (email) {
   const domainIndex = email.indexOf('@') + 1;
 
@@ -97,7 +84,6 @@ const domainNamesOf = function (emails) {
   return emails.map(domains);
 };
 
-// split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
 const splitWord = function (string) {
   return string.split(' ');
 };
