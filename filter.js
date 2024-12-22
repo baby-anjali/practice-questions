@@ -113,15 +113,10 @@ const filterBelowAveragePrice = function (products) {
   return products.filter(priceBelowAverage);
 };
 
-// active users who posted in the last 7 days [{username: "alice", lastPostDate: "2024-12-01", active: true}, {username: "bob", lastPostDate: "2024-11-20", active: true}] => [{username: "alice", lastPostDate: "2024-12-01", active: true}]
 const isRecentActive = function (user) {
   if (!user.active) {
     return false;
   }
-
-  console.log(user.lastPostDate);
-
-  console.log(daysDifference(user.lastPostDate, currentDate));
 
   return daysDifference(user.lastPostDate, currentDate) <= 7;
 };
