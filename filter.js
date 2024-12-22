@@ -112,8 +112,8 @@ const filterBelowAveragePrice = function (products) {
   return products.filter(priceBelowAverage);
 };
 
-// // active users who posted in the last 7 days [{username: "alice", lastPostDate: "2024-12-01", active: true}, {username: "bob", lastPostDate: "2024-11-20", active: true}] => [{username: "alice", lastPostDate: "2024-12-01", active: true}]
-// const filterRecentActiveUsers = function (users) { };
+// active users who posted in the last 7 days [{username: "alice", lastPostDate: "2024-12-01", active: true}, {username: "bob", lastPostDate: "2024-11-20", active: true}] => [{username: "alice", lastPostDate: "2024-12-01", active: true}]
+const filterRecentActiveUsers = function (users) { };
 
 // // students who passed all subjects [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}, {name: "Jane", subjects: [{name: "Math", passed: false}, {name: "Science", passed: true}]}] => [{name: "John", subjects: [{name: "Math", passed: true}, {name: "Science", passed: true}]}]
 // const filterStudentsWithAllSubjectsPassed = function (students) { };
@@ -493,6 +493,20 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForFilterRecentActiveUsers = [
+  [filterRecentActiveUsers,
+    [{ username: "alice", lastPostDate: "2024-12-01", active: true },
+    { username: "bob", lastPostDate: "2024-11-20", active: true }],
+    [{ username: "alice", lastPostDate: "2024-12-01", active: true }]],
+  [filterRecentActiveUsers,
+    [{ username: "alice", lastPostDate: "2024-12-01", active: false },
+    { username: "bob", lastPostDate: "2024-11-20", active: true }], []],
+  [filterRecentActiveUsers,
+    [{ username: "bob", lastPostDate: "2024-11-20", active: true }],
+    [{ username: "alice", lastPostDate: "2024-12-01", active: true }]],
+  [filterRecentActiveUsers, [], []]
+];
+
 const testCasesForBelowAveragePrice = [
   [filterBelowAveragePrice, [{ name: "item1", price: 10 },
   { name: "item2", price: 20 }, { name: "item3", price: 5 }],
@@ -601,7 +615,7 @@ const testCases = [
   ...testCasesForFilterGreaterThanTen, ...testCasesForFilterLongBooks,
   ...testCasesForFilterIncompleteProfile, ...testCasesForFilterHighGrades,
   ...testCasesForFilterInStock, ...testCasesForFilterRecentOrders,
-  ...testCasesForBelowAveragePrice
+  ...testCasesForBelowAveragePrice, ...testCasesForFilterRecentActiveUsers
 ];
 
 testAll(testCases);
