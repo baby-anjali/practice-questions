@@ -57,7 +57,11 @@ const double = function (value) {
 };
 
 const doubleLetters = function (string) {
-  return string.split('').map(double).join('');
+  if (string === '') {
+    return '';
+  }
+
+  return double(string[0]) + doubleLetters(string.slice(1));
 };
 
 const doubleLettersOf = function (strings) {
@@ -115,9 +119,7 @@ const isVowel = function (character) {
 };
 
 const countVowels = function (string) {
-  const totalVowels = string.split('').filter(isVowel);
-
-  return totalVowels.length;
+  return string.split('').filter(isVowel).length;
 };
 
 const countVowelsOf = function (strings) {
@@ -132,16 +134,8 @@ const reversedArraysOf = function (arrays) {
   return arrays.map(reverseArray);
 };
 
-const invert = function (funcName) {
-  return function (...args) {
-    return !funcName(...args);
-  };
-};
-
-const isNotVowel = invert(isVowel);
-
 const removeVowels = function (string) {
-  return string.split('').filter(isNotVowel).join('');
+  return string.replace(/[aeiou]/gi, '');
 };
 
 const withoutVowelsOf = function (strings) {
@@ -174,8 +168,6 @@ const reversedWordsOf = function (strings) {
   return strings.map(reverseWord);
 };
 
-// extract unique characters from ["apple", "banana", "grape"] => ["apl", "ban", "gra"]
-// Maintain the order of their first appearance in each string
 const getUniques = function (unique, string) {
   if (unique.length > 2 || string === '') {
     return unique;
