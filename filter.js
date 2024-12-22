@@ -1,4 +1,3 @@
-// even numbers [1, 2, 3, 4, 5] => [2, 4]
 const isEven = function (number) {
   return number % 2 === 0;
 };
@@ -7,7 +6,6 @@ const filterEvenNumbers = function (numbers) {
   return numbers.filter(isEven);
 };
 
-// words with more than 5 letters ["apple", "banana", "kiwi", "grape"] => ["banana"]
 const isLong = function (word) {
   return word.length > 5;
 };
@@ -16,8 +14,14 @@ const filterLongWords = function (words) {
   return words.filter(isLong);
 };
 
-// // people older than 30 [{name: "Alice", age: 25}, {name: "Bob", age: 35}] => [{name: "Bob", age: 35}]
-// const filterAdults = function (people) { };
+// people older than 30 [{name: "Alice", age: 25}, {name: "Bob", age: 35}] => [{name: "Bob", age: 35}]
+const isAdult = function (person) {
+  return person.age > 30;
+};
+
+const filterAdults = function (people) {
+  return people.filter(isAdult);
+};
 
 // // active users [{username: "alice", active: true}, {username: "bob", active: false}] => [{username: "alice", active: true}]
 // const filterActiveUsers = function (users) { };
@@ -350,7 +354,7 @@ const filterLongWords = function (words) {
 // // Output: ["Lion", "Elephant"]
 // const findAnimalsByHabitat = function (animals, lookup) { };
 
-const areEqual = function (array1, array2) {
+const areElementsEqual = function (array1, array2) {
   if (array1.length !== array2.length) {
     return false;
   }
@@ -370,7 +374,7 @@ const areArraysEqual = function (array1, array2) {
   }
 
   if (!Array.isArray(array1[0])) {
-    return areEqual(array1, array2);
+    return areElementsEqual(array1, array2);
   }
 
   for (let index = 0; index < array1.length; index++) {
@@ -382,11 +386,42 @@ const areArraysEqual = function (array1, array2) {
   return true;
 };
 
+const areObjectsEqual = function (obj1, obj2) {
+  if (typeof obj1 !== typeof obj2) {
+    return false;
+  }
+
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+
+  if (keys1.length !== keys2.length) return false;
+
+  for (let key of keys1) {
+    if (!keys2.includes(key)) return false;
+
+    if (obj1[key] !== obj2[key]) return false;
+  }
+
+  return true;
+};
+
+const areEqual = function (actual, expected) {
+  if (typeof value === 'object' && typeof value === 'object') {
+    return areObjectsEqual(actual, expected);
+  }
+
+  if (Array.isArray(actual) && Array.isArray(expected)) {
+    return areArraysEqual(actual, expected);
+  }
+
+  return actual === expected;
+};
+
 const testEach = function (failed, [funcName, inputs, expected]) {
 
   const actual = funcName(inputs);
 
-  if (!areArraysEqual(actual, expected)) {
+  if (!areEqual(actual, expected)) {
     failed.push([funcName, inputs, expected, actual]);
   }
 
@@ -401,6 +436,11 @@ const testAll = function (testCases) {
 
   console.table(failed);
 };
+
+const testCasesForFilterAdults = [
+  [filterAdults, [{ name: "Alice", age: 25 }, { name: "Bob", age: 35 }],
+    [{ name: "Bob", age: 35 }]]
+];
 
 const testCasesForFilterLongWords = [
   [filterLongWords, ["apple", "banana", "kiwi", "grape"], ["banana"]],
@@ -418,7 +458,8 @@ const testCasesForFilterEven = [
 ];
 
 const testCases = [
-  ...testCasesForFilterEven, ...testCasesForFilterLongWords
+  ...testCasesForFilterEven, ...testCasesForFilterLongWords,
+  ...testCasesForFilterAdults
 ];
 
 testAll(testCases);
