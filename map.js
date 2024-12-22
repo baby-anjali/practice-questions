@@ -118,12 +118,20 @@ const isVowel = function (character) {
   return vowels.includes(character.toLowerCase());
 };
 
-const countVowels = function (string) {
-  return string.split('').filter(isVowel).length;
+const countVowels = function (count, character) {
+  if (isVowel(character.toLowerCase())) {
+    count++;
+  }
+
+  return count;
+};
+
+const countAllVowels = function (string) {
+  return [...string].reduce(countVowels, 0);
 };
 
 const countVowelsOf = function (strings) {
-  return strings.map(countVowels);
+  return strings.map(countAllVowels);
 };
 
 const reverseArray = function (array) {
@@ -188,8 +196,8 @@ const uniqueCharactersOf = function (strings) {
   return strings.map(uniqueCharacters);
 };
 
-// // generate ranges from [3, 5, 2] => [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]
-// const rangesOf = function (numbers) { };
+// generate ranges from [3, 5, 2] => [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]
+const rangesOf = function (numbers) { };
 
 // // capitalize first letters of ["hello world", "goodbye moon"] => ["Hello World", "Goodbye Moon"]
 // const capitalizedFirstLettersOf = function (strings) { };
@@ -556,8 +564,9 @@ const testAll = function (testCases) {
 
 const testCasesForUniqueCharacters = [
   [uniqueCharactersOf, ["apple", "banana", "grape"], ["apl", "ban", "gra"]],
+  [uniqueCharactersOf, ["company"], ["com"]],
   [uniqueCharactersOf, [""], [""]],
-  [uniqueCharactersOf, [], []],
+  [uniqueCharactersOf, [], []]
 ];
 
 const testCasesForReversedWords = [
