@@ -1,5 +1,5 @@
-// // capitalize first letters of ["hello world", "goodbye moon"] => ["Hello World", "Goodbye Moon"]
-// const capitalizedFirstLettersOf = function (strings) { };
+// capitalize first letters of ["hello world", "goodbye moon"] => ["Hello World", "Goodbye Moon"]
+const capitalizedFirstLettersOf = function (strings) { };
 
 // // find word lengths in ["apple pie", "banana split"] => [[5, 3], [6, 5]]
 // const wordLengthsOf = function (strings) { };
@@ -360,3 +360,16 @@ const testAll = function (testCases) {
 
   console.table(failed);
 };
+
+const testCaseForCapitalizeFirst = [
+  [capitalizedFirstLettersOf, ["hello world", "goodbye moon"],
+    ["Hello World", "Goodbye Moon"]],
+  [capitalizedFirstLettersOf, ["goodbye moon"], ["Goodbye Moon"]],
+  [capitalizedFirstLettersOf, ["goodbye"], ["Goodbye"]],
+  [capitalizedFirstLettersOf, [""], [""]],
+  [capitalizedFirstLettersOf, [], []]
+];
+
+const testCases = [...testCaseForCapitalizeFirst];
+
+testAll(testCases);
