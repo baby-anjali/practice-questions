@@ -38,7 +38,6 @@ const filterNumbersGreaterThanTen = function (numbers) {
   return numbers.filter(isGreaterThanTen);
 };
 
-// books with more than 200 pages [{title: "Book 1", pages: 150}, {title: "Book 2", pages: 250}] => [{title: "Book 2", pages: 250}]
 const isLongBook = function (book) {
   return book.pages > 200;
 };
@@ -47,8 +46,8 @@ const filterLongBooks = function (books) {
   return books.filter(isLongBook);
 };
 
-// // users with incomplete profiles [{username: "alice", profileComplete: true}, {username: "bob", profileComplete: false}] => [{username: "bob", profileComplete: false}]
-// const filterIncompleteProfiles = function (users) { };
+// users with incomplete profiles [{username: "alice", profileComplete: true}, {username: "bob", profileComplete: false}] => [{username: "bob", profileComplete: false}]
+const filterIncompleteProfiles = function (users) { };
 
 // // students with grades above 80 [{name: "John", grade: 75}, {name: "Jane", grade: 85}] => [{name: "Jane", grade: 85}]
 // const filterHighGrades = function (students) { };
@@ -447,6 +446,17 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForFilterIncompleteProfile = [
+  [filterIncompleteProfiles, [{ username: "alice", profileComplete: true },
+  { username: "bob", profileComplete: false }],
+    [{ username: "bob", profileComplete: false }]]
+  [filterIncompleteProfiles,
+  [{ username: "alice", profileComplete: true }], []]
+  [filterIncompleteProfiles, [{ username: "bob", profileComplete: false }],
+  [{ username: "bob", profileComplete: false }]]
+  [filterIncompleteProfiles, [], []],
+];
+
 const testCasesForFilterLongBooks = [
   [filterLongBooks,
     [{ title: "Book 1", pages: 150 }, { title: "Book 2", pages: 250 }],
@@ -457,13 +467,6 @@ const testCasesForFilterLongBooks = [
   [filterLongBooks, [], []],
 ];
 
-const testCasesForFilterGreaterThanTen = [
-  [filterNumbersGreaterThanTen, [5, 12, 7, 18, 3], [12, 18]],
-  [filterNumbersGreaterThanTen, [5, 3], []],
-  [filterNumbersGreaterThanTen, [18, 300], [18, 300]],
-  [filterNumbersGreaterThanTen, [], []],
-];
-
 const testCasesForFilterActiveUsers = [
   [filterActiveUsers,
     [{ username: "alice", active: true }, { username: "bob", active: false }],
@@ -472,6 +475,13 @@ const testCasesForFilterActiveUsers = [
     [{ username: "alice", active: true }]],
   [filterActiveUsers, [{ username: "bob", active: false }], []],
   [filterActiveUsers, [], []],
+];
+
+const testCasesForFilterGreaterThanTen = [
+  [filterNumbersGreaterThanTen, [5, 12, 7, 18, 3], [12, 18]],
+  [filterNumbersGreaterThanTen, [5, 3], []],
+  [filterNumbersGreaterThanTen, [18, 300], [18, 300]],
+  [filterNumbersGreaterThanTen, [], []],
 ];
 
 const testCasesForFilterAdults = [
@@ -500,7 +510,8 @@ const testCasesForFilterEven = [
 const testCases = [
   ...testCasesForFilterEven, ...testCasesForFilterLongWords,
   ...testCasesForFilterAdults, ...testCasesForFilterActiveUsers,
-  ...testCasesForFilterGreaterThanTen, ...testCasesForFilterLongBooks
+  ...testCasesForFilterGreaterThanTen, ...testCasesForFilterLongBooks,
+  ...testCasesForFilterIncompleteProfile
 ];
 
 testAll(testCases);
