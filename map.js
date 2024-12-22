@@ -166,12 +166,12 @@ const cumulativeSumsOf = function (arrays) {
   return arrays.map(runningTotal);
 };
 
-const reverseWords = function (string) {
+const reverseWord = function (string) {
   return string.replace(/\S+/g, reverseString);
 };
 
 const reversedWordsOf = function (strings) {
-  return strings.map(reverseWords);
+  return strings.map(reverseWord);
 };
 
 // extract unique characters from ["apple", "banana", "grape"] => ["apl", "ban", "gra"]
@@ -545,7 +545,11 @@ const testAll = function (testCases) {
 };
 
 const testCasesForUniqueCharacters = [
-  [uniqueCharactersOf, ["apple", "banana", "grape"], ["apl", "ban", "gra"]]
+  [uniqueCharactersOf, ["apple", "banana", "grape"], ["apl", "ban", "gra"]],
+  [uniqueCharactersOf, ["goat"], ["goat"]],
+  [uniqueCharactersOf, ["bbbb"], ["b"]],
+  [uniqueCharactersOf, [""], [""]],
+  [uniqueCharactersOf, [], []],
 ];
 
 const testCasesForReversedWords = [
@@ -686,7 +690,8 @@ const testCases = [
   ...testCasesForSplitWords, ...testCasesForJoinedArrays,
   ...testCasesForRepeatedStrings, ...testCasesForCountVowelsOf,
   ...testCasesForReversedArrays, ...testCasesForWithoutVowelsOf,
-  ...testCasesForCumulativeSums, ...testCasesForReversedWords
+  ...testCasesForCumulativeSums, ...testCasesForReversedWords,
+  ...testCasesForUniqueCharacters
 ];
 
 testAll(testCases);
