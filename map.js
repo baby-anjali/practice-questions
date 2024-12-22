@@ -174,9 +174,9 @@ const reversedWordsOf = function (strings) {
   return strings.map(reverseWords);
 };
 
-// // extract unique characters from ["apple", "banana", "grape"] => ["apl", "ban", "gra"]
-// // Maintain the order of their first appearance in each string
-// const uniqueCharactersOf = function (strings) { };
+// extract unique characters from ["apple", "banana", "grape"] => ["apl", "ban", "gra"]
+// Maintain the order of their first appearance in each string
+const uniqueCharactersOf = function (strings) { };
 
 // // generate ranges from [3, 5, 2] => [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]
 // const rangesOf = function (numbers) { };
@@ -543,6 +543,10 @@ const testAll = function (testCases) {
 
   console.table(failed);
 };
+
+const testCasesForUniqueCharacters = [
+  [uniqueCharactersOf, ["apple", "banana", "grape"], ["apl", "ban", "gra"]]
+];
 
 const testCasesForReversedWords = [
   [reversedWordsOf, ["hello world", "goodbye moon"],
