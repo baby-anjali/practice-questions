@@ -61,7 +61,6 @@ const filterHighGrades = function (students) {
   return students.filter(hasHighGrade);
 };
 
-// products that are in stock [{product: "apple", inStock: true}, {product: "banana", inStock: false}] => [{product: "apple", inStock: true}]
 const isInStock = function (product) {
   return product.inStock;
 };
