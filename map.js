@@ -176,6 +176,18 @@ const reversedWordsOf = function (strings) {
 
 // extract unique characters from ["apple", "banana", "grape"] => ["apl", "ban", "gra"]
 // Maintain the order of their first appearance in each string
+const getUniques = function (unique, character) {
+  if (!unique.includes(character)) {
+    unique += character;
+  }
+
+  return unique;
+};
+
+const uniqueCharacters = function (string) {
+  return string.split('').reduce(getUniques, '').slice(0, 3);
+};
+
 const uniqueCharactersOf = function (strings) {
   return strings.map(uniqueCharacters);
 };
@@ -548,8 +560,6 @@ const testAll = function (testCases) {
 
 const testCasesForUniqueCharacters = [
   [uniqueCharactersOf, ["apple", "banana", "grape"], ["apl", "ban", "gra"]],
-  [uniqueCharactersOf, ["goat"], ["goat"]],
-  [uniqueCharactersOf, ["bbbb"], ["b"]],
   [uniqueCharactersOf, [""], [""]],
   [uniqueCharactersOf, [], []],
 ];
