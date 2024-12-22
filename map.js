@@ -128,7 +128,6 @@ const reversedArraysOf = function (arrays) {
   return arrays.map(reverseArray);
 };
 
-// remove vowels from ["apple", "banana", "grape"] => ["ppl", "bnn", "grp"]
 const invert = function (funcName) {
   return function (...args) {
     return !funcName(...args);
@@ -145,9 +144,9 @@ const withoutVowelsOf = function (strings) {
   return strings.map(removeVowels);
 };
 
-// // cumulative sums of [[1, 2, 3], [4, 5, 6]] => [[1, 3, 6], [4, 9, 15]]
-// // Example: cumulative sum of [1, 2, 3] is [1, 1+2, 1+2+3]
-// const cumulativeSumsOf = function (arrays) { };
+// cumulative sums of [[1, 2, 3], [4, 5, 6]] => [[1, 3, 6], [4, 9, 15]]
+// Example: cumulative sum of [1, 2, 3] is [1, 1+2, 1+2+3]
+const cumulativeSumsOf = function (arrays) { };
 
 // // reverse words in ["hello world", "goodbye moon"] => ["olleh dlrow", "eybdoog noom"]
 // const reversedWordsOf = function (strings) { };
@@ -521,6 +520,13 @@ const testAll = function (testCases) {
 
   console.table(failed);
 };
+
+const testCasesForCumulativeSums = [
+  [cumulativeSumsOf, [[1, 2, 3], [4, 5, 6]], [[1, 3, 6], [4, 9, 15]]],
+  [cumulativeSumsOf, [[1, 1, 3]], [[1, 2, 5]]],
+  [cumulativeSumsOf, [[1]], [[1]]],
+  [cumulativeSumsOf, [[]], [[]]]
+];
 
 const testCasesForWithoutVowelsOf = [
   [withoutVowelsOf, ["apple", "banana", "grape"], ["ppl", "bnn", "grp"]],
