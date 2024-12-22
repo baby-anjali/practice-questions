@@ -46,7 +46,6 @@ const filterLongBooks = function (books) {
   return books.filter(isLongBook);
 };
 
-// users with incomplete profiles [{username: "alice", profileComplete: true}, {username: "bob", profileComplete: false}] => [{username: "bob", profileComplete: false}]
 const hasIncompleteProfile = function (user) {
   return !user.profileComplete;
 };
@@ -55,8 +54,13 @@ const filterIncompleteProfiles = function (users) {
   return users.filter(hasIncompleteProfile);
 };
 
-// // students with grades above 80 [{name: "John", grade: 75}, {name: "Jane", grade: 85}] => [{name: "Jane", grade: 85}]
-// const filterHighGrades = function (students) { };
+// students with grades above 80 [{name: "John", grade: 75}, {name: "Jane", grade: 85}] => [{name: "Jane", grade: 85}]
+const hasHighGrade = function (student) {
+  return student.grade > 80;
+};
+const filterHighGrades = function (students) {
+  return students.filter(hasHighGrade);
+};
 
 // // products that are in stock [{product: "apple", inStock: true}, {product: "banana", inStock: false}] => [{product: "apple", inStock: true}]
 // const filterInStockProducts = function (products) { };
@@ -393,12 +397,8 @@ const areArraysEqual = function (array1, array2) {
     return false;
   }
 
-  if (!Array.isArray(array1[0])) {
-    return areElementsEqual(array1, array2);
-  }
-
   for (let index = 0; index < array1.length; index++) {
-    if (!areArraysEqual(array1[index], array2[index])) {
+    if (!areEqual(array1[index], array2[index])) {
       return false;
     }
   }
@@ -451,6 +451,16 @@ const testAll = function (testCases) {
 
   console.table(failed);
 };
+
+const testCasesForFilterHighGrades = [
+  [filterHighGrades,
+    [{ name: "John", grade: 75 }, { name: "Jane", grade: 85 }],
+    [{ name: "Jane", grade: 85 }]],
+  [filterHighGrades,
+    [{ name: "Jane", grade: 85 }], [{ name: "Jane", grade: 85 }]],
+  [filterHighGrades, [{ name: "John", grade: 75 }], []],
+  [filterHighGrades, [], []]
+];
 
 const testCasesForFilterIncompleteProfile = [
   [filterIncompleteProfiles, [{ username: "alice", profileComplete: true },
@@ -517,7 +527,7 @@ const testCases = [
   ...testCasesForFilterEven, ...testCasesForFilterLongWords,
   ...testCasesForFilterAdults, ...testCasesForFilterActiveUsers,
   ...testCasesForFilterGreaterThanTen, ...testCasesForFilterLongBooks,
-  ...testCasesForFilterIncompleteProfile
+  ...testCasesForFilterIncompleteProfile, ...testCasesForFilterHighGrades
 ];
 
 testAll(testCases);
