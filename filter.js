@@ -22,7 +22,6 @@ const filterAdults = function (people) {
   return people.filter(isAdult);
 };
 
-// active users [{username: "alice", active: true}, {username: "bob", active: false}] => [{username: "alice", active: true}]
 const isActive = function (user) {
   return user.active;
 };
@@ -31,8 +30,8 @@ const filterActiveUsers = function (users) {
   return users.filter(isActive);
 };
 
-// // numbers greater than 10 [5, 12, 7, 18, 3] => [12, 18]
-// const filterNumbersGreaterThanTen = function (numbers) { };
+// numbers greater than 10 [5, 12, 7, 18, 3] => [12, 18]
+const filterNumbersGreaterThanTen = function (numbers) { };
 
 // // books with more than 200 pages [{title: "Book 1", pages: 150}, {title: "Book 2", pages: 250}] => [{title: "Book 2", pages: 250}]
 // const filterLongBooks = function (books) { };
@@ -437,6 +436,13 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testCasesForFilterGreaterThanTen = [
+  [filterNumbersGreaterThanTen, [5, 12, 7, 18, 3], [12, 18]],
+  [filterNumbersGreaterThanTen, [5, 3], []],
+  [filterNumbersGreaterThanTen, [18, 300], [18, 300]],
+  [filterNumbersGreaterThanTen, [], []],
+];
+
 const testCasesForFilterActiveUsers = [
   [filterActiveUsers,
     [{ username: "alice", active: true }, { username: "bob", active: false }],
@@ -472,7 +478,8 @@ const testCasesForFilterEven = [
 
 const testCases = [
   ...testCasesForFilterEven, ...testCasesForFilterLongWords,
-  ...testCasesForFilterAdults, ...testCasesForFilterActiveUsers
+  ...testCasesForFilterAdults, ...testCasesForFilterActiveUsers,
+  ...testCasesForFilterGreaterThanTen
 ];
 
 testAll(testCases);
