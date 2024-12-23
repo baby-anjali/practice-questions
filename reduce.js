@@ -1,4 +1,3 @@
-// sumOf([1, 2, 3, 4]) => 10
 const add = function (number1, number2) {
   return number1 + number2;
 };
