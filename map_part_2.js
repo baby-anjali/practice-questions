@@ -14,15 +14,13 @@ const wordLengthsOf = strings =>
 const flattenedArraysOf = arrayOfArrays =>
   arrayOfArrays.map(array => array.flatMap(x => x));
 
-// // sort letters in ["cat", "bat", "rat"] alphabetically => ["act", "abt", "art"]
 const sortedLettersOf = strings =>
   strings.map(word => [...word].sort().join(''));
 
-// // wrap strings in brackets ["apple", "banana"] => ["[apple]", "[banana]"]
-// const wrappedStringsOf = function (strings) { };
+const wrappedStringsOf = strings => strings.map(word => '[' + word + ']');
 
 // // extract names from [{ name: "Alice" }, { name: "Bob" }] => ["Alice", "Bob"]
-// const extractNames = function (objects) { };
+const extractNames = function (objects) { };
 
 // // extract ages from [{ age: 25 }, { age: 30 }] => [25, 30]
 // const extractAges = function (objects) { };
@@ -369,6 +367,13 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testWrappedStringsOf = [
+  [wrappedStringsOf, ["apple", "banana"], ["[apple]", "[banana]"]],
+  [wrappedStringsOf, ["apple"], ["[apple]"]],
+  [wrappedStringsOf, [""], ["[]"]],
+  [wrappedStringsOf, [], []]
+];
+
 const testSortedLettersOf = [
   [sortedLettersOf, ["cat", "bat", "rat"], ["act", "abt", "art"]],
   [sortedLettersOf, ["cactus", "ba t", ""], ["accstu", " abt", ""]],
@@ -399,7 +404,8 @@ const testCaseForCapitalizeFirst = [
 
 const testCases = [
   // ...testCaseForCapitalizeFirst, ...testWordLengthsOf,
-  ...testFlattenedArrays, ...testSortedLettersOf
+  // ...testFlattenedArrays, ...testSortedLettersOf,
+  ...testWrappedStringsOf
 ];
 
 testAll(testCases);
