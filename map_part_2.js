@@ -1,26 +1,15 @@
-// capitalize first letters of ["hello world", "goodbye moon"] => ["Hello World", "Goodbye Moon"]
 const splitWord = function (string) {
   return string.split(' ');
 };
 
-const capitaliseFirstOfEach = function ([first, ...rest]) {
-  if (first === undefined) {
-    return [];
-  }
+const capitaliseFirst = word =>
+  word.length > 0 ? word[0].toUpperCase() + word.slice(1) : '';
 
-  return first.toUpperCase() + rest.join('');
-};
+const capitalizedFirstLettersOf = strings =>
+  strings.map(string => splitWord(string).map(capitaliseFirst).join(' '));
 
-const capitaliseFirst = function (string) {
-  return splitWord(string).map(capitaliseFirstOfEach).join(' ');
-};
-
-const capitalizedFirstLettersOf = function (strings) {
-  return strings.map(capitaliseFirst);
-};
-
-// // find word lengths in ["apple pie", "banana split"] => [[5, 3], [6, 5]]
-// const wordLengthsOf = function (strings) { };
+const wordLengthsOf = strings =>
+  strings.map(string => splitWord(string).map(word => word.length));
 
 // // flatten nested arrays of [[1, [2, 3]], [4, [5, 6]]] => [[1, 2, 3], [4, 5, 6]]
 // const flattenedArraysOf = function (arrays) { };
@@ -379,6 +368,13 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testWordLengthsOf = [
+  [wordLengthsOf, ["apple pie", "banana split"], [[5, 3], [6, 5]]],
+  [wordLengthsOf, ["apple", "split"], [[5], [5]]],
+  [wordLengthsOf, ["apple", ""], [[5], [0]]],
+  [wordLengthsOf, [], []]
+];
+
 const testCaseForCapitalizeFirst = [
   [capitalizedFirstLettersOf, ["hello world", "goodbye moon"],
     ["Hello World", "Goodbye Moon"]],
@@ -388,6 +384,6 @@ const testCaseForCapitalizeFirst = [
   [capitalizedFirstLettersOf, [], []]
 ];
 
-const testCases = [...testCaseForCapitalizeFirst];
+const testCases = [...testCaseForCapitalizeFirst, ...testWordLengthsOf];
 
 testAll(testCases);
