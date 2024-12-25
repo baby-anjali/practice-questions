@@ -20,7 +20,8 @@ const sortedLettersOf = strings =>
 const wrappedStringsOf = strings => strings.map(word => '[' + word + ']');
 
 // // extract names from [{ name: "Alice" }, { name: "Bob" }] => ["Alice", "Bob"]
-const extractNames = function (objects) { };
+const extractNames = objects =>
+  objects.map(object => "name" in object ? object.name : '');
 
 // // extract ages from [{ age: 25 }, { age: 30 }] => [25, 30]
 // const extractAges = function (objects) { };
@@ -367,6 +368,14 @@ const testAll = function (testCases) {
   console.table(failed);
 };
 
+const testExtractNames = [
+  [extractNames, [{ name: "Alice" }, { name: "Bob" }], ["Alice", "Bob"]],
+  [extractNames, [{ name: "Alice", age: 56 }], ["Alice"]],
+  [extractNames, [{ age: 56 }], [""]],
+  [extractNames, [{}], [""]],
+  [extractNames, [], []]
+];
+
 const testWrappedStringsOf = [
   [wrappedStringsOf, ["apple", "banana"], ["[apple]", "[banana]"]],
   [wrappedStringsOf, ["apple"], ["[apple]"]],
@@ -405,7 +414,7 @@ const testCaseForCapitalizeFirst = [
 const testCases = [
   // ...testCaseForCapitalizeFirst, ...testWordLengthsOf,
   // ...testFlattenedArrays, ...testSortedLettersOf,
-  ...testWrappedStringsOf
+  ...testWrappedStringsOf, ...testExtractNames
 ];
 
 testAll(testCases);
