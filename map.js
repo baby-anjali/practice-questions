@@ -100,9 +100,8 @@ const reverseWord = (string) => string.replace(/\S+/g, reverseString);
 
 const reversedWordsOf = (strings) => strings.map(reverseWord);
 
-const getUniques = function (character, index, array) {
-  return array.indexOf(character) === index ? character : "";
-};
+const getUniques = (character, index, array) =>
+  array.indexOf(character) === index ? character : "";
 
 const uniqueCharacters = (string) =>
   [...string].map(getUniques).join("").slice(0, 3);
