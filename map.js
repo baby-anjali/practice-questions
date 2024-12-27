@@ -62,9 +62,7 @@ const repeatedStringsOf = (strings) => strings.map(double);
 
 const isVowel = (character) => vowels.includes(character.toLowerCase());
 
-const countVowels = function (character) {
-  return isVowel(character) ? 1 : 0;
-};
+const countVowels = (character) => (isVowel(character) ? 1 : 0);
 
 const countAllVowels = (string) => [...string].map(countVowels).reduce(add, 0);
 
@@ -102,24 +100,23 @@ const uniqueCharacters = (string) =>
 
 const uniqueCharactersOf = (strings) => strings.map(uniqueCharacters);
 
-const range = function (number) {
-  const rangeList = [];
-
-  for (let value = 0; value < number; value++) {
-    rangeList.push(value);
-  }
-
-  return rangeList;
-};
+const range = (number) => [...Array(number)].map((e, index) => index);
 
 const rangesOf = (numbers) => numbers.map(range);
 
 const testCasesForRangesOf = [
-  // [rangesOf, [2, 5, 1], [[0, 1], [0, 1, 2, 3, 4], [0]]],
-  // [rangesOf, [5, 2], [[0, 1, 2, 3, 4], [0, 1]]],
+  [rangesOf, [2, 5, 1], [[0, 1], [0, 1, 2, 3, 4], [0]]],
+  [
+    rangesOf,
+    [5, 2],
+    [
+      [0, 1, 2, 3, 4],
+      [0, 1],
+    ],
+  ],
   [rangesOf, [2], [[0, 1]]],
-  // [rangesOf, [0], [[]]],
-  // [rangesOf, [], []]
+  [rangesOf, [0], [[]]],
+  [rangesOf, [], []],
 ];
 
 const testCasesForUniqueCharacters = [
