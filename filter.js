@@ -1,4 +1,6 @@
-const currentDate = '2024-12-22';
+import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
+
+const currentDate = "2024-12-22";
 
 const isEven = function (number) {
   return number % 2 === 0;
@@ -130,7 +132,7 @@ const allPassed = function (subject) {
 };
 
 const IsPassingAll = function (student) {
-  return (student.subjects).every(allPassed);
+  return student.subjects.every(allPassed);
 };
 
 const filterStudentsWithAllSubjectsPassed = function (students) {
@@ -438,177 +440,205 @@ const filterStudentsWithAllSubjectsPassed = function (students) {
 // // Output: ["Lion", "Elephant"]
 // const findAnimalsByHabitat = function (animals, lookup) { };
 
-const areElementsEqual = function (array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  for (let index = 0; index < array1.length; index++) {
-    if (array1[index] !== array2[index]) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const areArraysEqual = function (array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  for (let index = 0; index < array1.length; index++) {
-    if (!areEqual(array1[index], array2[index])) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const areObjectsEqual = function (actual, expected) {
-  const keys1 = Object.keys(actual);
-  const keys2 = Object.keys(expected);
-
-  if (keys1.length !== keys2.length) return false;
-
-  for (const key of keys1) {
-    if (!keys2.includes(key)) return false;
-    if (!areEqual(actual[key], expected[key])) return false;
-  }
-
-  return true;
-};
-
-const areEqual = function (actual, expected) {
-  if (typeof actual === 'object' && typeof expected === 'object') {
-    return areObjectsEqual(actual, expected);
-  }
-
-  if (Array.isArray(actual) && Array.isArray(expected)) {
-    return areArraysEqual(actual, expected);
-  }
-
-  return actual === expected;
-};
-
-const testEach = function (failed, [funcName, inputs, expected]) {
-
-  const actual = funcName(inputs);
-
-  if (!areEqual(actual, expected)) {
-    failed.push([funcName, inputs, expected, actual]);
-  }
-
-  return failed;
-};
-
-const testAll = function (testCases) {
-  const failed = testCases.reduce(testEach, []);
-
-  const percent = (testCases.length - failed.length) / testCases.length * 100;
-  console.log(Math.floor(percent), "% passing!");
-
-  console.table(failed);
-};
-
 const testCasesForAllPassingStudents = [
-  [filterStudentsWithAllSubjectsPassed, [{
-    name: "John", subjects:
-      [{ name: "Math", passed: true }, { name: "Science", passed: true }]
-  },
-  {
-    name: "Jane", subjects:
-      [{ name: "Math", passed: false }, { name: "Science", passed: true }]
-  }],
-    [{ name: "John", subjects: [{ name: "Math", passed: true }, { name: "Science", passed: true }] }]],
-  [filterStudentsWithAllSubjectsPassed, [{
-    name: "Jane", subjects:
-      [{ name: "Math", passed: false }, { name: "Science", passed: true }]
-  }], []]
+  [
+    filterStudentsWithAllSubjectsPassed,
+    [
+      {
+        name: "John",
+        subjects: [
+          { name: "Math", passed: true },
+          { name: "Science", passed: true },
+        ],
+      },
+      {
+        name: "Jane",
+        subjects: [
+          { name: "Math", passed: false },
+          { name: "Science", passed: true },
+        ],
+      },
+    ],
+    [
+      {
+        name: "John",
+        subjects: [
+          { name: "Math", passed: true },
+          { name: "Science", passed: true },
+        ],
+      },
+    ],
+  ],
+  [
+    filterStudentsWithAllSubjectsPassed,
+    [
+      {
+        name: "Jane",
+        subjects: [
+          { name: "Math", passed: false },
+          { name: "Science", passed: true },
+        ],
+      },
+    ],
+    [],
+  ],
 ];
 
 const testCasesForFilterRecentActiveUsers = [
-  [filterRecentActiveUsers,
-    [{ username: "alice", lastPostDate: "2024-12-21", active: true },
-    { username: "bob", lastPostDate: "2024-11-20", active: true }],
-    [{ username: "alice", lastPostDate: "2024-12-21", active: true }]],
-  [filterRecentActiveUsers,
-    [{ username: "alice", lastPostDate: "2024-12-21", active: false },
-    { username: "bob", lastPostDate: "2024-11-20", active: true }], []],
-  [filterRecentActiveUsers,
-    [{ username: "bob", lastPostDate: "2024-11-20", active: true }], []],
-  [filterRecentActiveUsers, [], []]
+  [
+    filterRecentActiveUsers,
+    [
+      { username: "alice", lastPostDate: "2024-12-21", active: true },
+      { username: "bob", lastPostDate: "2024-11-20", active: true },
+    ],
+    [{ username: "alice", lastPostDate: "2024-12-21", active: true }],
+  ],
+  [
+    filterRecentActiveUsers,
+    [
+      { username: "alice", lastPostDate: "2024-12-21", active: false },
+      { username: "bob", lastPostDate: "2024-11-20", active: true },
+    ],
+    [],
+  ],
+  [
+    filterRecentActiveUsers,
+    [{ username: "bob", lastPostDate: "2024-11-20", active: true }],
+    [],
+  ],
+  [filterRecentActiveUsers, [], []],
 ];
 
 const testCasesForBelowAveragePrice = [
-  [filterBelowAveragePrice, [{ name: "item1", price: 10 },
-  { name: "item2", price: 20 }, { name: "item3", price: 5 }],
-    [{ name: "item1", price: 10 }, { name: "item3", price: 5 }]],
-  [filterBelowAveragePrice, [{ name: "item1", price: 10 },
-  { name: "item3", price: 5 }], [{ name: "item3", price: 5 }]],
+  [
+    filterBelowAveragePrice,
+    [
+      { name: "item1", price: 10 },
+      { name: "item2", price: 20 },
+      { name: "item3", price: 5 },
+    ],
+    [
+      { name: "item1", price: 10 },
+      { name: "item3", price: 5 },
+    ],
+  ],
+  [
+    filterBelowAveragePrice,
+    [
+      { name: "item1", price: 10 },
+      { name: "item3", price: 5 },
+    ],
+    [{ name: "item3", price: 5 }],
+  ],
   [filterBelowAveragePrice, [{ name: "item1", price: 10 }], []],
   [filterBelowAveragePrice, [], []],
 ];
 
 const testCasesForFilterRecentOrders = [
-  [filterRecentOrders,
+  [
+    filterRecentOrders,
     [{ orderDate: "2024-11-01" }, { orderDate: "2024-12-01" }],
-    [{ orderDate: "2024-12-01" }]],
-  [filterRecentOrders,
-    [{ orderDate: "2024-12-01" }], [{ orderDate: "2024-12-01" }]],
-  [filterRecentOrders,
-    [{ orderDate: "2024-11-01" }], []],
-  [filterRecentOrders, [], []]
+    [{ orderDate: "2024-12-01" }],
+  ],
+  [
+    filterRecentOrders,
+    [{ orderDate: "2024-12-01" }],
+    [{ orderDate: "2024-12-01" }],
+  ],
+  [filterRecentOrders, [{ orderDate: "2024-11-01" }], []],
+  [filterRecentOrders, [], []],
 ];
 
 const testCasesForFilterInStock = [
-  [filterInStockProducts, [{ product: "apple", inStock: true },
-  { product: "banana", inStock: false }],
-    [{ product: "apple", inStock: true }]],
-  [filterInStockProducts, [{ product: "apple", inStock: true }],
-    [{ product: "apple", inStock: true }]],
+  [
+    filterInStockProducts,
+    [
+      { product: "apple", inStock: true },
+      { product: "banana", inStock: false },
+    ],
+    [{ product: "apple", inStock: true }],
+  ],
+  [
+    filterInStockProducts,
+    [{ product: "apple", inStock: true }],
+    [{ product: "apple", inStock: true }],
+  ],
   [filterInStockProducts, [{ product: "banana", inStock: false }], []],
-  [filterInStockProducts, [], []]
+  [filterInStockProducts, [], []],
 ];
 
 const testCasesForFilterHighGrades = [
-  [filterHighGrades,
-    [{ name: "John", grade: 75 }, { name: "Jane", grade: 85 }],
-    [{ name: "Jane", grade: 85 }]],
-  [filterHighGrades,
-    [{ name: "Jane", grade: 85 }], [{ name: "Jane", grade: 85 }]],
+  [
+    filterHighGrades,
+    [
+      { name: "John", grade: 75 },
+      { name: "Jane", grade: 85 },
+    ],
+    [{ name: "Jane", grade: 85 }],
+  ],
+  [
+    filterHighGrades,
+    [{ name: "Jane", grade: 85 }],
+    [{ name: "Jane", grade: 85 }],
+  ],
   [filterHighGrades, [{ name: "John", grade: 75 }], []],
-  [filterHighGrades, [], []]
+  [filterHighGrades, [], []],
 ];
 
 const testCasesForFilterIncompleteProfile = [
-  [filterIncompleteProfiles, [{ username: "alice", profileComplete: true },
-  { username: "bob", profileComplete: false }],
-    [{ username: "bob", profileComplete: false }]],
-  [filterIncompleteProfiles,
-    [{ username: "alice", profileComplete: true }], []],
-  [filterIncompleteProfiles, [{ username: "bob", profileComplete: false }],
-    [{ username: "bob", profileComplete: false }]],
-  [filterIncompleteProfiles, [], []]
+  [
+    filterIncompleteProfiles,
+    [
+      { username: "alice", profileComplete: true },
+      { username: "bob", profileComplete: false },
+    ],
+    [{ username: "bob", profileComplete: false }],
+  ],
+  [
+    filterIncompleteProfiles,
+    [{ username: "alice", profileComplete: true }],
+    [],
+  ],
+  [
+    filterIncompleteProfiles,
+    [{ username: "bob", profileComplete: false }],
+    [{ username: "bob", profileComplete: false }],
+  ],
+  [filterIncompleteProfiles, [], []],
 ];
 
 const testCasesForFilterLongBooks = [
-  [filterLongBooks,
-    [{ title: "Book 1", pages: 150 }, { title: "Book 2", pages: 250 }],
-    [{ title: "Book 2", pages: 250 }]],
-  [filterLongBooks,
-    [{ title: "Book 2", pages: 250 }], [{ title: "Book 2", pages: 250 }]],
+  [
+    filterLongBooks,
+    [
+      { title: "Book 1", pages: 150 },
+      { title: "Book 2", pages: 250 },
+    ],
+    [{ title: "Book 2", pages: 250 }],
+  ],
+  [
+    filterLongBooks,
+    [{ title: "Book 2", pages: 250 }],
+    [{ title: "Book 2", pages: 250 }],
+  ],
   [filterLongBooks, [{ title: "Book 1", pages: 150 }], []],
   [filterLongBooks, [], []],
 ];
 
 const testCasesForFilterActiveUsers = [
-  [filterActiveUsers,
-    [{ username: "alice", active: true }, { username: "bob", active: false }],
-    [{ username: "alice", active: true }]],
-  [filterActiveUsers, [{ username: "alice", active: true }],
-    [{ username: "alice", active: true }]],
+  [
+    filterActiveUsers,
+    [
+      { username: "alice", active: true },
+      { username: "bob", active: false },
+    ],
+    [{ username: "alice", active: true }],
+  ],
+  [
+    filterActiveUsers,
+    [{ username: "alice", active: true }],
+    [{ username: "alice", active: true }],
+  ],
   [filterActiveUsers, [{ username: "bob", active: false }], []],
   [filterActiveUsers, [], []],
 ];
@@ -621,11 +651,17 @@ const testCasesForFilterGreaterThanTen = [
 ];
 
 const testCasesForFilterAdults = [
-  [filterAdults, [{ name: "Alice", age: 25 }, { name: "Bob", age: 35 }],
-    [{ name: "Bob", age: 35 }]],
+  [
+    filterAdults,
+    [
+      { name: "Alice", age: 25 },
+      { name: "Bob", age: 35 },
+    ],
+    [{ name: "Bob", age: 35 }],
+  ],
   [filterAdults, [{ name: "Bob", age: 35 }], [{ name: "Bob", age: 35 }]],
   [filterAdults, [{ name: "Alice", age: 5 }], []],
-  [filterAdults, [], []]
+  [filterAdults, [], []],
 ];
 
 const testCasesForFilterLongWords = [
@@ -633,24 +669,30 @@ const testCasesForFilterLongWords = [
   [filterLongWords, ["apple", "kiwi", "grape"], []],
   [filterLongWords, ["banana"], ["banana"]],
   [filterLongWords, [""], []],
-  [filterLongWords, [], []]
+  [filterLongWords, [], []],
 ];
 
 const testCasesForFilterEven = [
   [filterEvenNumbers, [1, 2, 3, 4, 5], [2, 4]],
   [filterEvenNumbers, [2, 4], [2, 4]],
   [filterEvenNumbers, [1, 3, 5], []],
-  [filterEvenNumbers, [], []]
+  [filterEvenNumbers, [], []],
 ];
 
 const testCases = [
-  ...testCasesForFilterEven, ...testCasesForFilterLongWords,
-  ...testCasesForFilterAdults, ...testCasesForFilterActiveUsers,
-  ...testCasesForFilterGreaterThanTen, ...testCasesForFilterLongBooks,
-  ...testCasesForFilterIncompleteProfile, ...testCasesForFilterHighGrades,
-  ...testCasesForFilterInStock, ...testCasesForFilterRecentOrders,
-  ...testCasesForBelowAveragePrice, ...testCasesForFilterRecentActiveUsers,
-  ...testCasesForAllPassingStudents
+  ...testCasesForFilterEven,
+  ...testCasesForFilterLongWords,
+  ...testCasesForFilterAdults,
+  ...testCasesForFilterActiveUsers,
+  ...testCasesForFilterGreaterThanTen,
+  ...testCasesForFilterLongBooks,
+  ...testCasesForFilterIncompleteProfile,
+  ...testCasesForFilterHighGrades,
+  ...testCasesForFilterInStock,
+  ...testCasesForFilterRecentOrders,
+  ...testCasesForBelowAveragePrice,
+  ...testCasesForFilterRecentActiveUsers,
+  ...testCasesForAllPassingStudents,
 ];
 
 testAll(testCases);

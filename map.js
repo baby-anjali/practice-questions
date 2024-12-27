@@ -1,114 +1,64 @@
-const vowels = 'aeiou';
+import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
 
-const square = function (number) {
-  return number * number;
-};
+const vowels = "aeiou";
 
-const squaresOf = function (numbers) {
-  return numbers.map(square);
-};
+const square = (number) => number * number;
 
-const lengths = function (string) {
-  return string.length;
-};
+const squaresOf = (numbers) => numbers.map(square);
 
-const lengthsOf = function (strings) {
-  return strings.map(lengths);
-};
+const lengths = (string) => string.length;
 
-const capitalise = function (string) {
-  return string.toUpperCase();
-};
+const lengthsOf = (strings) => strings.map(lengths);
 
-const uppercaseOf = function (strings) {
-  return strings.map(capitalise);
-};
+const capitalise = (string) => string.toUpperCase();
 
-const firstCharacter = function (string) {
-  return string === '' ? '' : string[0];
-};
+const uppercaseOf = (strings) => strings.map(capitalise);
 
-const firstCharactersOf = function (strings) {
-  return strings.map(firstCharacter);
-};
+const firstCharacter = (string) => (string === "" ? "" : string[0]);
 
-const truthValue = function (number) {
-  return number !== 0;
-};
+const firstCharactersOf = (strings) => strings.map(firstCharacter);
 
-const truthValuesOf = function (numbers) {
-  return numbers.map(truthValue);
-};
+const truthValue = (number) => number !== 0;
 
-const reverseString = function (string) {
-  return [...string].reverse().join('');
-};
+const truthValuesOf = (numbers) => numbers.map(truthValue);
 
-const reversedStringsOf = function (strings) {
-  return strings.map(reverseString);
-};
+const reverseString = (string) => [...string].reverse().join("");
 
-const double = function (value) {
-  return value.repeat(2);
-};
+const reversedStringsOf = (strings) => strings.map(reverseString);
 
-const doubleLetters = function (string) {
-  return [...string].map(double).join('');
-};
+const double = (value) => value.repeat(2);
 
-const doubleLettersOf = function (strings) {
-  return strings.map(doubleLetters);
-};
+const doubleLetters = (string) => [...string].map(double).join("");
 
-const negateBoolean = function (boolean) {
-  return !boolean;
-};
+const doubleLettersOf = (strings) => strings.map(doubleLetters);
 
-const negatedBooleansOf = function (booleans) {
-  return booleans.map(negateBoolean);
-};
+const negateBoolean = (boolean) => !boolean;
 
-const charCodes = function (letter) {
-  return letter.charCodeAt(0);
-};
+const negatedBooleansOf = (booleans) => booleans.map(negateBoolean);
 
-const charCodesOf = function (strings) {
-  return strings.map(charCodes);
-};
+const charCodes = (letter) => letter.charCodeAt(0);
+
+const charCodesOf = (strings) => strings.map(charCodes);
 
 const domains = function (email) {
-  const domainIndex = email.indexOf('@') + 1;
+  const domainIndex = email.indexOf("@") + 1;
 
   return email.substring(domainIndex);
 };
 
-const domainNamesOf = function (emails) {
-  return emails.map(domains);
-};
+const domainNamesOf = (emails) => emails.map(domains);
 
-const splitWord = function (string) {
-  return string.split(' ');
-};
+const splitWord = (string) => string.split(" ");
 
-const splitWordsOf = function (strings) {
-  return strings.map(splitWord);
-};
+const splitWordsOf = (strings) => strings.map(splitWord);
 
-const joinedArray = function (array) {
-  return array.join('');
-};
+const joinedArray = (array) => array.join("");
 
-const joinedArraysOf = function (arrayOfArrays) {
-  return arrayOfArrays.map(joinedArray);
-};
+const joinedArraysOf = (arrayOfArrays) => arrayOfArrays.map(joinedArray);
 
-const repeatedStringsOf = function (strings) {
-  return strings.map(double);
-};
+const repeatedStringsOf = (strings) => strings.map(double);
 
-const isVowel = function (character) {
-  return vowels.includes(character.toLowerCase());
-};
+const isVowel = (character) => vowels.includes(character.toLowerCase());
 
 const countVowels = function (count, character) {
   if (isVowel(character.toLowerCase())) {
@@ -118,29 +68,17 @@ const countVowels = function (count, character) {
   return count;
 };
 
-const countAllVowels = function (string) {
-  return [...string].reduce(countVowels, 0);
-};
+const countAllVowels = (string) => [...string].reduce(countVowels, 0);
 
-const countVowelsOf = function (strings) {
-  return strings.map(countAllVowels);
-};
+const countVowelsOf = (strings) => strings.map(countAllVowels);
 
-const reverseArray = function (array) {
-  return array.reverse();
-};
+const reverseArray = (array) => array.reverse();
 
-const reversedArraysOf = function (arrays) {
-  return arrays.map(reverseArray);
-};
+const reversedArraysOf = (arrays) => arrays.map(reverseArray);
 
-const removeVowels = function (string) {
-  return string.replace(/[aeiou]/gi, '');
-};
+const removeVowels = (string) => string.replace(/[aeiou]/gi, "");
 
-const withoutVowelsOf = function (strings) {
-  return strings.map(removeVowels);
-};
+const withoutVowelsOf = (strings) => strings.map(removeVowels);
 
 const getRunningTotal = function (totals, value) {
   totals.push(value + totals.at(-1));
@@ -156,37 +94,20 @@ const runningTotal = function ([first, ...numbers]) {
   return numbers.reduce(getRunningTotal, [first]);
 };
 
-const cumulativeSumsOf = function (arrays) {
-  return arrays.map(runningTotal);
+const cumulativeSumsOf = (arrays) => arrays.map(runningTotal);
+
+const reverseWord = (string) => string.replace(/\S+/g, reverseString);
+
+const reversedWordsOf = (strings) => strings.map(reverseWord);
+
+const getUniques = function (character, index, array) {
+  return array.indexOf(character) === index ? character : "";
 };
 
-const reverseWord = function (string) {
-  return string.replace(/\S+/g, reverseString);
-};
+const uniqueCharacters = (string) =>
+  [...string].map(getUniques).join("").slice(0, 3);
 
-const reversedWordsOf = function (strings) {
-  return strings.map(reverseWord);
-};
-
-const getUniques = function (unique, string) {
-  if (unique.length > 2 || string === '') {
-    return unique;
-  }
-
-  if (!unique.includes(string[0])) {
-    unique += string[0];
-  }
-
-  return getUniques(unique, string.slice(1));
-};
-
-const uniqueCharacters = function (string) {
-  return getUniques('', string);
-};
-
-const uniqueCharactersOf = function (strings) {
-  return strings.map(uniqueCharacters);
-};
+const uniqueCharactersOf = (strings) => strings.map(uniqueCharacters);
 
 const range = function (number) {
   const rangeList = [];
@@ -198,60 +119,7 @@ const range = function (number) {
   return rangeList;
 };
 
-const rangesOf = function (numbers) {
-  return numbers.map(range);
-};
-
-const areEqual = function (array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  for (let index = 0; index < array1.length; index++) {
-    if (array1[index] !== array2[index]) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const areArraysEqual = function (array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  if (!Array.isArray(array1[0])) {
-    return areEqual(array1, array2);
-  }
-
-  for (let index = 0; index < array1.length; index++) {
-    if (!areArraysEqual(array1[index], array2[index])) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const testEach = function (failed, [funcName, inputs, expected]) {
-  const actual = funcName(inputs);
-
-  if (!areArraysEqual(actual, expected)) {
-    failed.push([funcName, inputs, expected, actual]);
-  }
-
-  return failed;
-};
-
-const testAll = function (testCases) {
-  const failed = testCases.reduce(testEach, []);
-
-  const percent = (testCases.length - failed.length) / testCases.length * 100;
-  console.log(Math.floor(percent), "% passing!");
-
-  console.table(failed);
-};
+const rangesOf = (numbers) => numbers.map(range);
 
 const testCasesForRangesOf = [
   // [rangesOf, [2, 5, 1], [[0, 1], [0, 1, 2, 3, 4], [0]]],
@@ -264,23 +132,37 @@ const testCasesForRangesOf = [
 const testCasesForUniqueCharacters = [
   [uniqueCharactersOf, ["apple", "banana", "grape"], ["apl", "ban", "gra"]],
   [uniqueCharactersOf, ["company"], ["com"]],
+  [uniqueCharactersOf, ["krishna"], ["kri"]],
   [uniqueCharactersOf, [""], [""]],
-  [uniqueCharactersOf, [], []]
+  [uniqueCharactersOf, [], []],
 ];
 
 const testCasesForReversedWords = [
-  [reversedWordsOf, ["hello world", "goodbye moon"],
-    ["olleh dlrow", "eybdoog noom"]],
+  [
+    reversedWordsOf,
+    ["hello world", "goodbye moon"],
+    ["olleh dlrow", "eybdoog noom"],
+  ],
   [reversedWordsOf, ["hello"], ["olleh"]],
   [reversedWordsOf, [""], [""]],
-  [reversedWordsOf, [], []]
+  [reversedWordsOf, [], []],
 ];
 
 const testCasesForCumulativeSums = [
-  [cumulativeSumsOf, [[1, 2, 3], [4, 5, 6]], [[1, 3, 6], [4, 9, 15]]],
+  [
+    cumulativeSumsOf,
+    [
+      [1, 2, 3],
+      [4, 5, 6],
+    ],
+    [
+      [1, 3, 6],
+      [4, 9, 15],
+    ],
+  ],
   [cumulativeSumsOf, [[1, 1, 3]], [[1, 2, 5]]],
   [cumulativeSumsOf, [[1]], [[1]]],
-  [cumulativeSumsOf, [[]], [[]]]
+  [cumulativeSumsOf, [[]], [[]]],
 ];
 
 const testCasesForWithoutVowelsOf = [
@@ -291,16 +173,26 @@ const testCasesForWithoutVowelsOf = [
 ];
 
 const testCasesForReversedArrays = [
-  [reversedArraysOf, [[1, 2, 3], [4, 5, 6]], [[3, 2, 1], [6, 5, 4]]],
+  [
+    reversedArraysOf,
+    [
+      [1, 2, 3],
+      [4, 5, 6],
+    ],
+    [
+      [3, 2, 1],
+      [6, 5, 4],
+    ],
+  ],
   [reversedArraysOf, [[1]], [[1]]],
-  [reversedArraysOf, [[]], [[]]]
+  [reversedArraysOf, [[]], [[]]],
 ];
 
 const testCasesForCountVowelsOf = [
   [countVowelsOf, ["apple", "banana", "grape"], [2, 3, 2]],
   [countVowelsOf, ["gym"], [0]],
   [countVowelsOf, [""], [0]],
-  [countVowelsOf, [], []]
+  [countVowelsOf, [], []],
 ];
 
 const testCasesForRepeatedStrings = [
@@ -308,26 +200,49 @@ const testCasesForRepeatedStrings = [
   [repeatedStringsOf, ["hi ", "bye"], ["hi hi ", "byebye"]],
   [repeatedStringsOf, ["hi ", ""], ["hi hi ", ""]],
   [repeatedStringsOf, [""], [""]],
-  [repeatedStringsOf, [], []]
+  [repeatedStringsOf, [], []],
 ];
 
 const testCasesForJoinedArrays = [
-  [joinedArraysOf, [["a", "b"], ["c", "d"]], ["ab", "cd"]],
-  [joinedArraysOf, [["a", "b"], ["c", ""]], ["ab", "c"]],
+  [
+    joinedArraysOf,
+    [
+      ["a", "b"],
+      ["c", "d"],
+    ],
+    ["ab", "cd"],
+  ],
+  [
+    joinedArraysOf,
+    [
+      ["a", "b"],
+      ["c", ""],
+    ],
+    ["ab", "c"],
+  ],
   [joinedArraysOf, [["a", "b"]], ["ab"]],
   [joinedArraysOf, [["", ""]], [""]],
 ];
 
 const testCasesForSplitWords = [
-  [splitWordsOf, ["hello world", "goodbye moon"],
-    [["hello", "world"], ["goodbye", "moon"]]],
+  [
+    splitWordsOf,
+    ["hello world", "goodbye moon"],
+    [
+      ["hello", "world"],
+      ["goodbye", "moon"],
+    ],
+  ],
   [splitWordsOf, ["hello", "goodbye"], [["hello"], ["goodbye"]]],
-  [splitWordsOf, [""], [[""]]]
+  [splitWordsOf, [""], [[""]]],
 ];
 
 const testCasesForDomains = [
-  [domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"],
-    ["gmail.com", "yahoo.com"]],
+  [
+    domainNamesOf,
+    ["user1@gmail.com", "admin@yahoo.com"],
+    ["gmail.com", "yahoo.com"],
+  ],
   [domainNamesOf, ["user1@gmail.com"], ["gmail.com"]],
   [domainNamesOf, [""], [""]],
   [domainNamesOf, [], []],
@@ -335,21 +250,21 @@ const testCasesForDomains = [
 
 const testCasesForCharCodes = [
   [charCodesOf, ["a", "b", "c"], [97, 98, 99]],
-  [charCodesOf, ["a"], [97]]
+  [charCodesOf, ["a"], [97]],
 ];
 
 const testCasesForNegatedBooleans = [
   [negatedBooleansOf, [true, false, true], [false, true, false]],
   [negatedBooleansOf, [true], [false]],
   [negatedBooleansOf, [false], [true]],
-  [negatedBooleansOf, [], []]
+  [negatedBooleansOf, [], []],
 ];
 
 const testCasesForDoubleLetters = [
   [doubleLettersOf, ["cat", "dog", "bat"], ["ccaatt", "ddoogg", "bbaatt"]],
   [doubleLettersOf, ["bat"], ["bbaatt"]],
   [doubleLettersOf, [""], [""]],
-  [doubleLettersOf, ["pool"], ["ppooooll"]]
+  [doubleLettersOf, ["pool"], ["ppooooll"]],
 ];
 
 const testCasesForTruthValues = [
@@ -357,21 +272,21 @@ const testCasesForTruthValues = [
   [truthValuesOf, [0, 1, 2, -3], [false, true, true, true]],
   [truthValuesOf, [0], [false]],
   [truthValuesOf, [1], [true]],
-  [truthValuesOf, [], []]
+  [truthValuesOf, [], []],
 ];
 
 const testCasesForReversedStrings = [
   [reversedStringsOf, ["hello", "world"], ["olleh", "dlrow"]],
   [reversedStringsOf, ["hello"], ["olleh"]],
   [reversedStringsOf, [""], [""]],
-  [reversedStringsOf, [], []]
+  [reversedStringsOf, [], []],
 ];
 
 const testCasesForFirstCharacter = [
   [firstCharactersOf, ["apple", "banana", "kiwi"], ["a", "b", "k"]],
   [firstCharactersOf, ["apple", "", "kiwi"], ["a", "", "k"]],
   [firstCharactersOf, ["", "", ""], ["", "", ""]],
-  [firstCharactersOf, [], []]
+  [firstCharactersOf, [], []],
 ];
 
 const testForUpperCaseOf = [
@@ -379,7 +294,7 @@ const testForUpperCaseOf = [
   [uppercaseOf, ["hello", "wor ld"], ["HELLO", "WOR LD"]],
   [uppercaseOf, ["hello"], ["HELLO"]],
   [uppercaseOf, [""], [""]],
-  [uppercaseOf, [], []]
+  [uppercaseOf, [], []],
 ];
 
 const testCasesForLengthsOf = [
@@ -387,27 +302,37 @@ const testCasesForLengthsOf = [
   [lengthsOf, ["", "banana", "kiwi"], [0, 6, 4]],
   [lengthsOf, ["", "banana", "ki wi"], [0, 6, 5]],
   [lengthsOf, ["", "", ""], [0, 0, 0]],
-  [lengthsOf, [], []]
+  [lengthsOf, [], []],
 ];
 
 const testCasesForSquaresOf = [
   [squaresOf, [1, 2, 3], [1, 4, 9]],
   [squaresOf, [-1, -2, -3], [1, 4, 9]],
   [squaresOf, [2], [4]],
-  [squaresOf, [], []]
+  [squaresOf, [], []],
 ];
 
 const testCases = [
-  ...testCasesForSquaresOf, ...testCasesForLengthsOf,
-  ...testForUpperCaseOf, ...testCasesForFirstCharacter,
-  ...testCasesForTruthValues, ...testCasesForReversedStrings,
-  ...testCasesForDoubleLetters, ...testCasesForNegatedBooleans,
-  ...testCasesForCharCodes, ...testCasesForDomains,
-  ...testCasesForSplitWords, ...testCasesForJoinedArrays,
-  ...testCasesForRepeatedStrings, ...testCasesForCountVowelsOf,
-  ...testCasesForReversedArrays, ...testCasesForWithoutVowelsOf,
-  ...testCasesForCumulativeSums, ...testCasesForReversedWords,
-  ...testCasesForUniqueCharacters, ...testCasesForRangesOf
+  ...testCasesForSquaresOf,
+  ...testCasesForLengthsOf,
+  ...testForUpperCaseOf,
+  ...testCasesForFirstCharacter,
+  ...testCasesForTruthValues,
+  ...testCasesForReversedStrings,
+  ...testCasesForDoubleLetters,
+  ...testCasesForNegatedBooleans,
+  ...testCasesForCharCodes,
+  ...testCasesForDomains,
+  ...testCasesForSplitWords,
+  ...testCasesForJoinedArrays,
+  ...testCasesForRepeatedStrings,
+  ...testCasesForCountVowelsOf,
+  ...testCasesForReversedArrays,
+  ...testCasesForWithoutVowelsOf,
+  ...testCasesForCumulativeSums,
+  ...testCasesForReversedWords,
+  ...testCasesForUniqueCharacters,
+  ...testCasesForRangesOf,
 ];
 
 testAll(testCases);

@@ -1,3 +1,5 @@
+import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
+
 const add = (number1, number2) => number1 + number2;
 
 const sumOf = numbers => numbers.reduce(add, 0);
@@ -16,7 +18,7 @@ const maximum = (number1, number2) => number1 > number2 ? number1 : number2;
 
 const maxOf = numbers => numbers.reduce(maximum, -Infinity);
 
-const sumPositiveNumbers = function numbers {
+const sumPositiveNumbers = numbers => {
   return numbers.filter(number => number > 0).reduce(add, 0);
 };
 
@@ -176,80 +178,6 @@ const countNegativeNumbers = numbers => numbers.reduce(countNegative, 0);
 
 // // sumByCategory([{ category: 'A', value: 10 }, { category: 'B', value: 20 }, { category: 'A', value: 30 }]) => { A: 40, B: 20 }
 // const sumByCategory = function (items) { };
-
-const areElementsEqual = function (array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  for (let index = 0; index < array1.length; index++) {
-    if (array1[index] !== array2[index]) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const areArraysEqual = function (array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  for (let index = 0; index < array1.length; index++) {
-    if (!areEqual(array1[index], array2[index])) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const areObjectsEqual = function (actual, expected) {
-  const keys1 = Object.keys(actual);
-  const keys2 = Object.keys(expected);
-
-  if (keys1.length !== keys2.length) return false;
-
-  for (const key of keys1) {
-    if (!keys2.includes(key)) return false;
-    if (!areEqual(actual[key], expected[key])) return false;
-  }
-
-  return true;
-};
-
-const areEqual = function (actual, expected) {
-  if (typeof actual === 'object' && typeof expected === 'object') {
-    return areObjectsEqual(actual, expected);
-  }
-
-  if (Array.isArray(actual) && Array.isArray(expected)) {
-    return areArraysEqual(actual, expected);
-  }
-
-  return actual === expected;
-};
-
-const testEach = function (failed, [funcName, inputs, expected]) {
-
-  const actual = funcName(inputs);
-
-  if (!areEqual(actual, expected)) {
-    failed.push([funcName, inputs, expected, actual]);
-  }
-
-  return failed;
-};
-
-const testAll = function (testCases) {
-  const failed = testCases.reduce(testEach, []);
-
-  const percent = (testCases.length - failed.length) / testCases.length * 100;
-  console.log(Math.floor(percent), "% passing!");
-
-  console.table(failed);
-};
 
 const testCasesForProduct = [
   [productOf, [1, 2, 3], 6],

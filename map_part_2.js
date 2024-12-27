@@ -1,33 +1,32 @@
-const splitWord = function (string) {
-  return string.split(' ');
-};
+import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
 
-const capitaliseFirst = word =>
-  word.length > 0 ? word[0].toUpperCase() + word.slice(1) : '';
+const splitWord = (string) => string.split(" ");
 
-const capitalizedFirstLettersOf = strings =>
-  strings.map(string => splitWord(string).map(capitaliseFirst).join(' '));
+const capitaliseFirst = (word) =>
+  word.length > 0 ? word[0].toUpperCase() + word.slice(1) : "";
 
-const wordLengthsOf = strings =>
-  strings.map(string => splitWord(string).map(word => word.length));
+const capitalizedFirstLettersOf = (strings) =>
+  strings.map((string) => splitWord(string).map(capitaliseFirst).join(" "));
 
-const flattenedArraysOf = arrayOfArrays =>
-  arrayOfArrays.map(array => array.flatMap(x => x));
+const wordLengthsOf = (strings) =>
+  strings.map((string) => splitWord(string).map((word) => word.length));
 
-const sortedLettersOf = strings =>
-  strings.map(word => [...word].sort().join(''));
+const flattenedArraysOf = (arrayOfArrays) =>
+  arrayOfArrays.map((array) => array.flatMap((x) => x));
 
-const wrappedStringsOf = strings => strings.map(word => '[' + word + ']');
+const sortedLettersOf = (strings) =>
+  strings.map((word) => [...word].sort().join(""));
 
-// // extract names from [{ name: "Alice" }, { name: "Bob" }] => ["Alice", "Bob"]
-const extractNames = objects =>
-  objects.map(object => "name" in object ? object.name : '');
+const wrappedStringsOf = (strings) => strings.map((word) => "[" + word + "]");
 
-// // extract ages from [{ age: 25 }, { age: 30 }] => [25, 30]
-// const extractAges = function (objects) { };
+const extractNames = (objects) =>
+  objects.map((object) => ("name" in object ? object.name : ""));
 
-// // extract the first letters of names from [{ name: "Alice" }, { name: "Bob" }] => ["A", "B"]
-// const firstLettersOfNames = function (objects) { };
+const extractAges = (objects) =>
+  objects.map((object) => ("age" in object ? object.age : 0));
+
+const firstLettersOfNames = (objects) =>
+  objects.map((object) => ("name" in object ? object.name[0] : ""));
 
 // // calculate areas from [{ width: 2, height: 3 }, { width: 4, height: 5 }] => [6, 20]
 // const calculateAreas = function (rectangles) { };
@@ -167,7 +166,6 @@ const extractNames = objects =>
 // // Steps: Use `flatMap` to combine all courses into a single array, then filter out duplicates.
 // const uniqueCourses = function (students) { };
 
-
 // // given a list of users, where each user has a list of messages, return an array of messages that contain the word "urgent" in [{ name: "Alice", messages: ["Urgent: Pay bills", "Meeting at 3"] }, { name: "Bob", messages: ["Urgent: Call customer", "Check email"] }] => ["Urgent: Pay bills", "Urgent: Call customer"]
 // // Steps: Use `flatMap` to combine all messages, then filter for "urgent" messages.
 // const urgentMessages = function (users) { };
@@ -200,31 +198,31 @@ const extractNames = objects =>
 // // Steps: Use the index parameter in `map` to conditionally append "(old)".
 // const formatNamesWithAge = function (people) { };
 
-// // given an array of posts, each with a list of hashtags, return a flat list of all hashtags used in the posts in 
-// // [{ post: "Vacation", hashtags: ["#sunny", "#beach"] }, { post: "Dinner", hashtags: ["#food", "#yum"] }] 
+// // given an array of posts, each with a list of hashtags, return a flat list of all hashtags used in the posts in
+// // [{ post: "Vacation", hashtags: ["#sunny", "#beach"] }, { post: "Dinner", hashtags: ["#food", "#yum"] }]
 // // => ["#sunny", "#beach", "#food", "#yum"]
 // // Steps: Use `flatMap` to extract all hashtags and combine them into a single list.
 // const extractHashtags = function (posts) { };
 
-// // given an array of users, each with a list of followers, return an array where each user is paired with the number of their followers 
-// // [{ username: "alice", followers: ["bob", "charlie"] }, { username: "bob", followers: ["alice"] }] 
+// // given an array of users, each with a list of followers, return an array where each user is paired with the number of their followers
+// // [{ username: "alice", followers: ["bob", "charlie"] }, { username: "bob", followers: ["alice"] }]
 // // => [{ username: "alice", followersCount: 2 }, { username: "bob", followersCount: 1 }]
 // // Steps: Use `map` to create an object with the username and the count of followers.
 // const countFollowers = function (users) { };
 
-// // given an array of posts, each with a list of comments, return a new array of the comments with a "replied to" note added if the post index is even 
-// // [{ post: "Vacation", comments: ["Nice!", "Love it!"] }, { post: "Dinner", comments: ["Yummy", "Looks great!"] }] 
+// // given an array of posts, each with a list of comments, return a new array of the comments with a "replied to" note added if the post index is even
+// // [{ post: "Vacation", comments: ["Nice!", "Love it!"] }, { post: "Dinner", comments: ["Yummy", "Looks great!"] }]
 // // => [["Nice! replied to", "Love it! replied to"], ["Yummy", "Looks great!"]]
 // // Steps: Use `map` and the index to conditionally append "replied to" for even indexed posts.
 // const addReplyNoteToComments = function (posts) { };
 
-// // given an array of videos, each with a list of comments, return a new array where each comment is capitalized if the number of likes on the video is more than 1000 
-// // [{ video: "Dance", likes: 1200, comments: ["great video", "love this"] }, { video: "Food", likes: 800, comments: ["looks good", "yum"] }] 
+// // given an array of videos, each with a list of comments, return a new array where each comment is capitalized if the number of likes on the video is more than 1000
+// // [{ video: "Dance", likes: 1200, comments: ["great video", "love this"] }, { video: "Food", likes: 800, comments: ["looks good", "yum"] }]
 // // => [["Great video", "Love this"], ["looks good", "yum"]]
 // // Steps: Use `map` to capitalize comments only if the number of likes exceeds 1000.
 // const capitalizeCommentsIfPopular = function (videos) { };
 
-// // given an array of posts, each with a list of user tags, return a new array where each tag is transformed into an object with { tag: 'username', count: x }, 
+// // given an array of posts, each with a list of user tags, return a new array where each tag is transformed into an object with { tag: 'username', count: x },
 // // where x is the number of times the tag appears in the post's list of tags, in [{ post: "TikTok Challenge", tags: ["fun", "dance", "fun"] }, { post: "Viral Recipe", tags: ["recipe", "yum", "fun"] }]
 // // => [{ tag: "fun", count: 2 }, { tag: "dance", count: 1 }, { tag: "recipe", count: 1 }, { tag: "yum", count: 1 }]
 // // Steps: Use `map` to return objects with the tag and count, aggregating the counts based on the tags in each post.
@@ -283,17 +281,17 @@ const extractNames = objects =>
 // const applySalesTax = function (products) { };
 
 // // given an array of user objects with `name` and `posts`, return an array of objects where each object contains the user's name and an array of post titles
-// // [{name: "Alice", posts: [{title: "Post 1"}, {title: "Post 2"}]}, {name: "Bob", posts: [{title: "Post 3"}]}] 
+// // [{name: "Alice", posts: [{title: "Post 1"}, {title: "Post 2"}]}, {name: "Bob", posts: [{title: "Post 3"}]}]
 // // => [{name: "Alice", posts: ["Post 1", "Post 2"]}, {name: "Bob", posts: ["Post 3"]}]
 // const getUserPostTitles = function (users) { };
 
 // // given an array of products, where each product contains a `name`, `price`, and `tags` array, return a new array of products where each product contains its name and an array of uppercased tags
-// // [{name: "Shirt", price: 20, tags: ["cotton", "summer"]}, {name: "Shoes", price: 50, tags: ["leather", "winter"]}] 
+// // [{name: "Shirt", price: 20, tags: ["cotton", "summer"]}, {name: "Shoes", price: 50, tags: ["leather", "winter"]}]
 // // => [{name: "Shirt", tags: ["COTTON", "SUMMER"]}, {name: "Shoes", tags: ["LEATHER", "WINTER"]}]
 // const formatProductTags = function (products) { };
 
 // // given an array of categories where each category has a `categoryName` and `items` array, return a new array where each item is an object with the category name and an array of item names
-// // [{categoryName: "Fruits", items: [{name: "Apple"}, {name: "Banana"}]}, {categoryName: "Vegetables", items: [{name: "Carrot"}]}] 
+// // [{categoryName: "Fruits", items: [{name: "Apple"}, {name: "Banana"}]}, {categoryName: "Vegetables", items: [{name: "Carrot"}]}]
 // // => [{categoryName: "Fruits", items: ["Apple", "Banana"]}, {categoryName: "Vegetables", items: ["Carrot"]}]
 // const getCategoryItems = function (categories) { };
 
@@ -317,104 +315,91 @@ const extractNames = objects =>
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
 
-const areEqual = function (array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
+const testForExtractFirstLetters = [
+  [firstLettersOfNames, [{ name: "Alice" }, { name: "Bob" }], ["A", "B"]],
+];
 
-  for (let index = 0; index < array1.length; index++) {
-    if (array1[index] !== array2[index]) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const areArraysEqual = function (array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  if (!Array.isArray(array1[0])) {
-    return areEqual(array1, array2);
-  }
-
-  for (let index = 0; index < array1.length; index++) {
-    if (!areArraysEqual(array1[index], array2[index])) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const testEach = function (failed, [funcName, inputs, expected]) {
-  const actual = funcName(inputs);
-
-  if (!areArraysEqual(actual, expected)) {
-    failed.push([funcName, inputs, expected, actual]);
-  }
-
-  return failed;
-};
-
-const testAll = function (testCases) {
-  const failed = testCases.reduce(testEach, []);
-
-  const percent = (testCases.length - failed.length) / testCases.length * 100;
-  console.log(Math.floor(percent), "% passing!");
-
-  console.table(failed);
-};
+const testExtractAges = [
+  [extractAges, [{ age: 25 }, { age: 30 }], [25, 30]],
+  [extractAges, [{ name: "Alice", age: 25 }, { age: 30 }], [25, 30]],
+  [extractAges, [{ name: "Alice", age: 25 }], [25]],
+  [extractAges, [{ name: "Alice" }], [0]],
+  [extractAges, [{}], [0]],
+  [extractAges, [], []],
+];
 
 const testExtractNames = [
   [extractNames, [{ name: "Alice" }, { name: "Bob" }], ["Alice", "Bob"]],
   [extractNames, [{ name: "Alice", age: 56 }], ["Alice"]],
   [extractNames, [{ age: 56 }], [""]],
   [extractNames, [{}], [""]],
-  [extractNames, [], []]
+  [extractNames, [], []],
 ];
 
 const testWrappedStringsOf = [
   [wrappedStringsOf, ["apple", "banana"], ["[apple]", "[banana]"]],
   [wrappedStringsOf, ["apple"], ["[apple]"]],
   [wrappedStringsOf, [""], ["[]"]],
-  [wrappedStringsOf, [], []]
+  [wrappedStringsOf, [], []],
 ];
 
 const testSortedLettersOf = [
   [sortedLettersOf, ["cat", "bat", "rat"], ["act", "abt", "art"]],
   [sortedLettersOf, ["cactus", "ba t", ""], ["accstu", " abt", ""]],
-  [sortedLettersOf, [], []]
+  [sortedLettersOf, [], []],
 ];
 
 const testFlattenedArrays = [
-  [flattenedArraysOf, [[1, [2, 3]], [4, [5, 6]]], [[1, 2, 3], [4, 5, 6]]],
+  [
+    flattenedArraysOf,
+    [
+      [1, [2, 3]],
+      [4, [5, 6]],
+    ],
+    [
+      [1, 2, 3],
+      [4, 5, 6],
+    ],
+  ],
   [flattenedArraysOf, [[1, [2]], [[5]]], [[1, 2], [5]]],
-  [flattenedArraysOf, [], []]
+  [flattenedArraysOf, [], []],
 ];
 
 const testWordLengthsOf = [
-  [wordLengthsOf, ["apple pie", "banana split"], [[5, 3], [6, 5]]],
+  [
+    wordLengthsOf,
+    ["apple pie", "banana split"],
+    [
+      [5, 3],
+      [6, 5],
+    ],
+  ],
   [wordLengthsOf, ["apple", "split"], [[5], [5]]],
   [wordLengthsOf, ["apple", ""], [[5], [0]]],
-  [wordLengthsOf, [], []]
+  [wordLengthsOf, [], []],
 ];
 
 const testCaseForCapitalizeFirst = [
-  [capitalizedFirstLettersOf, ["hello world", "goodbye moon"],
-    ["Hello World", "Goodbye Moon"]],
+  [
+    capitalizedFirstLettersOf,
+    ["hello world", "goodbye moon"],
+    ["Hello World", "Goodbye Moon"],
+  ],
   [capitalizedFirstLettersOf, ["goodbye moon"], ["Goodbye Moon"]],
   [capitalizedFirstLettersOf, ["goodbye"], ["Goodbye"]],
   [capitalizedFirstLettersOf, [""], [""]],
-  [capitalizedFirstLettersOf, [], []]
+  [capitalizedFirstLettersOf, [], []],
 ];
 
 const testCases = [
-  // ...testCaseForCapitalizeFirst, ...testWordLengthsOf,
-  // ...testFlattenedArrays, ...testSortedLettersOf,
-  ...testWrappedStringsOf, ...testExtractNames
+  ...testCaseForCapitalizeFirst,
+  ...testWordLengthsOf,
+  ...testFlattenedArrays,
+  ...testSortedLettersOf,
+  ...testWrappedStringsOf,
+  ...testExtractNames,
+  ...testExtractAges,
+  ...testForExtractFirstLetters,
 ];
 
 testAll(testCases);
