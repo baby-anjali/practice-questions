@@ -1,34 +1,34 @@
 import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
 
-const add = (number1, number2) => number1 + number2;
+import { add } from "../../tryouts/import_export/functions_library/math_functions.js";
 
-const sumOf = numbers => numbers.reduce(add, 0);
+const sumOf = (numbers) => numbers.reduce(add, 0);
 
 const multiply = (number1, number2) => number1 * number2;
 
-const productOf = numbers => numbers.reduce(multiply, 1);
+const productOf = (numbers) => numbers.reduce(multiply, 1);
 
-const averageOf = numbers => numbers.reduce(add, 0) / numbers.length;
+const averageOf = (numbers) => numbers.reduce(add, 0) / numbers.length;
 
-const minimum = (number1, number2) => number1 < number2 ? number1 : number2;
+const minimum = (number1, number2) => (number1 < number2 ? number1 : number2);
 
-const minOf = numbers => numbers.reduce(minimum, Infinity);
+const minOf = (numbers) => numbers.reduce(minimum, Infinity);
 
-const maximum = (number1, number2) => number1 > number2 ? number1 : number2;
+const maximum = (number1, number2) => (number1 > number2 ? number1 : number2);
 
-const maxOf = numbers => numbers.reduce(maximum, -Infinity);
+const maxOf = (numbers) => numbers.reduce(maximum, -Infinity);
 
-const sumPositiveNumbers = numbers => {
-  return numbers.filter(number => number > 0).reduce(add, 0);
+const sumPositiveNumbers = (numbers) => {
+  return numbers.filter((number) => number > 0).reduce(add, 0);
 };
 
-const square = number => number * number;
+const square = (number) => number * number;
 
-const sumOfSquares = numbers => numbers.map(square).reduce(add, 0);
+const sumOfSquares = (numbers) => numbers.map(square).reduce(add, 0);
 
-const isOdd = number => number % 2 !== 0;
+const isOdd = (number) => number % 2 !== 0;
 
-const sumOfOddNumbers = numbers => numbers.filter(isOdd).reduce(add, 0);
+const sumOfOddNumbers = (numbers) => numbers.filter(isOdd).reduce(add, 0);
 
 // countNegativeNumbers([1, -2, 3, -4]) => 2
 const countNegative = (count, number) => {
@@ -36,7 +36,7 @@ const countNegative = (count, number) => {
   return count;
 };
 
-const countNegativeNumbers = numbers => numbers.reduce(countNegative, 0);
+const countNegativeNumbers = (numbers) => numbers.reduce(countNegative, 0);
 
 // // findSumOfEvenSquares([1, 2, 3, 4]) => 20
 // const findSumOfEvenSquares = function (numbers) { };
@@ -181,18 +181,16 @@ const countNegativeNumbers = numbers => numbers.reduce(countNegative, 0);
 
 const testCasesForProduct = [
   [productOf, [1, 2, 3], 6],
-  [productOf, [0, 9, 10], 0]
+  [productOf, [0, 9, 10], 0],
 ];
 
 const testCasesForSumOF = [
-  [sumOf, ([1, 2, 3, 4]), 10],
-  [sumOf, ([1, 2, -2, 4]), 5],
-  [sumOf, ([1]), 1],
-  [sumOf, ([]), 0]
+  [sumOf, [1, 2, 3, 4], 10],
+  [sumOf, [1, 2, -2, 4], 5],
+  [sumOf, [1], 1],
+  [sumOf, [], 0],
 ];
 
-const testCases = [
-  ...testCasesForSumOF, ...testCasesForProduct
-];
+const testCases = [...testCasesForSumOF, ...testCasesForProduct];
 
 testAll(testCases);

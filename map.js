@@ -1,5 +1,7 @@
 import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
 
+import { add } from "../../tryouts/import_export/functions_library/math_functions.js";
+
 const vowels = "aeiou";
 
 const square = (number) => number * number;
@@ -60,15 +62,11 @@ const repeatedStringsOf = (strings) => strings.map(double);
 
 const isVowel = (character) => vowels.includes(character.toLowerCase());
 
-const countVowels = function (count, character) {
-  if (isVowel(character.toLowerCase())) {
-    count++;
-  }
-
-  return count;
+const countVowels = function (character) {
+  return isVowel(character) ? 1 : 0;
 };
 
-const countAllVowels = (string) => [...string].reduce(countVowels, 0);
+const countAllVowels = (string) => [...string].map(countVowels).reduce(add, 0);
 
 const countVowelsOf = (strings) => strings.map(countAllVowels);
 
@@ -76,27 +74,23 @@ const reverseArray = (array) => array.reverse();
 
 const reversedArraysOf = (arrays) => arrays.map(reverseArray);
 
-const removeVowels = (string) => string.replace(/[aeiou]/gi, "");
+const nonVowels = (character) => (isVowel(character) ? "" : character);
+
+const removeVowels = (string) => [...string].map(nonVowels).join("");
 
 const withoutVowelsOf = (strings) => strings.map(removeVowels);
 
-const getRunningTotal = function (totals, value) {
-  totals.push(value + totals.at(-1));
+const runningTotal = function (numbers) {
+  let total = 0;
 
-  return totals;
-};
-
-const runningTotal = function ([first, ...numbers]) {
-  if (first === undefined) {
-    return [];
-  }
-
-  return numbers.reduce(getRunningTotal, [first]);
+  return numbers.map((number) => (total += number));
 };
 
 const cumulativeSumsOf = (arrays) => arrays.map(runningTotal);
 
-const reverseWord = (string) => string.replace(/\S+/g, reverseString);
+const reverse = (string) => [...string].reverse().join("");
+
+const reverseWord = (string) => string.split(" ").map(reverse).join(" ");
 
 const reversedWordsOf = (strings) => strings.map(reverseWord);
 
