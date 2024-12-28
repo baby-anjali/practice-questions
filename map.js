@@ -2,6 +2,8 @@ import { testAll } from "../../tryouts/import_export/functions_library/test_fram
 
 import { add } from "../../tryouts/import_export/functions_library/math_functions.js";
 
+import { firstCharacter } from "../../tryouts/import_export/functions_library/miscellaneous.js";
+
 const vowels = "aeiou";
 
 const square = (number) => number * number;
@@ -15,8 +17,6 @@ const lengthsOf = (strings) => strings.map(lengths);
 const capitalise = (string) => string.toUpperCase();
 
 const uppercaseOf = (strings) => strings.map(capitalise);
-
-const firstCharacter = (string) => (string === "" ? "" : string[0]);
 
 const firstCharactersOf = (strings) => strings.map(firstCharacter);
 
