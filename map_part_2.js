@@ -33,13 +33,11 @@ const calculateAreas = (rectangles) =>
 
 const extractFlags = (objects) => objects.map(({ active }) => active);
 
-// // concatenate first and last names from [{ firstName: "Alice", lastName: "Smith" }, { firstName: "Bob", lastName: "Brown" }] => ["Alice Smith", "Bob Brown"]
 const fullNames = (objects) =>
   objects.map(({ firstName, lastName }) => [firstName, lastName].join(" "));
 
-// // calculate total prices from [{ price: 10, quantity: 2 }, { price: 5, quantity: 4 }] => [20, 20]
-// // (price * quantity)
-// const totalPrices = function (objects) { };
+const totalPrices = (objects) =>
+  objects.map(({ price, quantity }) => price * quantity);
 
 // // determine if a person is an adult from [{ name: "Alice", age: 17 }, { name: "Bob", age: 22 }] => [false, true]
 // // (age >= 18)
@@ -315,6 +313,19 @@ const fullNames = (objects) =>
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
 
+const testForTotalPrices = [
+  [
+    totalPrices,
+    [
+      { price: 10, quantity: 2 },
+      { price: 5, quantity: 4 },
+    ],
+    [20, 20],
+  ],
+  [totalPrices, [{ price: 5, quantity: 4 }], [20]],
+  [totalPrices, [{ price: 5, quantity: 0 }], [0]],
+];
+
 const testForFullNames = [
   [
     fullNames,
@@ -440,6 +451,7 @@ const testCases = [
   ...testForRectangleAreas,
   ...testForFlagExtract,
   ...testForFullNames,
+  ...testForTotalPrices,
 ];
 
 testAll(testCases);
