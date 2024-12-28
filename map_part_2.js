@@ -28,14 +28,14 @@ const extractAges = (objects) =>
 const firstLettersOfNames = (objects) =>
   objects.map((object) => ("name" in object ? object.name[0] : ""));
 
-// // calculate areas from [{ width: 2, height: 3 }, { width: 4, height: 5 }] => [6, 20]
-// const calculateAreas = function (rectangles) { };
+const calculateAreas = (rectangles) =>
+  rectangles.map(({ width, height }) => width * height);
 
-// // extract boolean flags from [{ active: true }, { active: false }] => [true, false]
-// const extractFlags = function (objects) { };
+const extractFlags = (objects) => objects.map(({ active }) => active);
 
 // // concatenate first and last names from [{ firstName: "Alice", lastName: "Smith" }, { firstName: "Bob", lastName: "Brown" }] => ["Alice Smith", "Bob Brown"]
-// const fullNames = function (objects) { };
+const fullNames = (objects) =>
+  objects.map(({ firstName, lastName }) => [firstName, lastName].join(" "));
 
 // // calculate total prices from [{ price: 10, quantity: 2 }, { price: 5, quantity: 4 }] => [20, 20]
 // // (price * quantity)
@@ -315,8 +315,45 @@ const firstLettersOfNames = (objects) =>
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
 
+const testForFullNames = [
+  [
+    fullNames,
+    [
+      { firstName: "Alice", lastName: "Smith" },
+      { firstName: "Bob", lastName: "Brown" },
+    ],
+    ["Alice Smith", "Bob Brown"],
+  ],
+  [fullNames, [{ firstName: "Alice", lastName: "Smith" }], ["Alice Smith"]],
+];
+
+const testForFlagExtract = [
+  [extractFlags, [{ active: true }, { active: false }], [true, false]],
+  [extractFlags, [{ active: false }, { active: false }], [false, false]],
+  [extractFlags, [{ active: false }, { active: true }], [false, true]],
+  [extractFlags, [{ active: false }], [false]],
+  [extractFlags, [{ active: true }], [true]],
+];
+
+const testForRectangleAreas = [
+  [
+    calculateAreas,
+    [
+      { width: 2, height: 3 },
+      { width: 4, height: 5 },
+    ],
+    [6, 20],
+  ],
+  [calculateAreas, [{ width: 2, height: 3 }], [6]],
+  [calculateAreas, [{ width: 2, height: 0 }], [0]],
+];
+
 const testForExtractFirstLetters = [
   [firstLettersOfNames, [{ name: "Alice" }, { name: "Bob" }], ["A", "B"]],
+  [firstLettersOfNames, [{ name: "alice" }, { name: "Bob" }], ["a", "B"]],
+  [firstLettersOfNames, [{ name: "Alice" }, { name: "bob" }], ["A", "b"]],
+  [firstLettersOfNames, [{}, {}], ["", ""]],
+  [firstLettersOfNames, [], []],
 ];
 
 const testExtractAges = [
@@ -400,6 +437,9 @@ const testCases = [
   ...testExtractNames,
   ...testExtractAges,
   ...testForExtractFirstLetters,
+  ...testForRectangleAreas,
+  ...testForFlagExtract,
+  ...testForFullNames,
 ];
 
 testAll(testCases);
