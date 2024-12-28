@@ -1,5 +1,7 @@
 import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
 
+import { firstCharacter } from "../../tryouts/import_export/functions_library/miscellaneous.js";
+
 const splitWord = (string) => string.split(" ");
 
 const capitaliseFirst = (word) =>
@@ -39,12 +41,13 @@ const fullNames = (objects) =>
 const totalPrices = (objects) =>
   objects.map(({ price, quantity }) => price * quantity);
 
-// // determine if a person is an adult from [{ name: "Alice", age: 17 }, { name: "Bob", age: 22 }] => [false, true]
-// // (age >= 18)
-// const isAdult = function (objects) { };
+const isAdult = (objects) => objects.map(({ age }) => age > 18);
 
 // // create abbreviations from [{ city: "New York", country: "USA" }, { city: "Los Angeles", country: "USA" }] => ["NY, USA", "LA, USA"]
-// const abbreviations = function (objects) { };
+const abbreviate = (strings) => splitWord(strings).map(firstCharacter).join("");
+
+const abbreviations = (objects) =>
+  objects.map(({ city, country }) => [city].map(abbreviate) + ", " + country);
 
 // // extract scores for math tests from [{ name: "Alice", scores: { math: 90, english: 85 } }, { name: "Bob", scores: { math: 80, english: 75 } }] => [90, 80]
 // const mathScores = function (objects) { };
@@ -313,6 +316,32 @@ const totalPrices = (objects) =>
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
 
+const testForAbbreviations = [
+  [
+    abbreviations,
+    [
+      { city: "New York", country: "USA" },
+      { city: "Los Angeles", country: "USA" },
+    ],
+    ["NY, USA", "LA, USA"],
+  ],
+  [abbreviations, [{ city: "Los Angeles", country: "USA" }], ["LA, USA"]],
+  [abbreviations, [{ city: "New Delhi", country: "India" }], ["ND, India"]],
+];
+
+const testForIsAdult = [
+  [
+    isAdult,
+    [
+      { name: "Alice", age: 17 },
+      { name: "Bob", age: 22 },
+    ],
+    [false, true],
+  ],
+  [isAdult, [{ name: "Bob", age: 22 }], [true]],
+  [isAdult, [{ name: "Bob", age: 12 }], [false]],
+];
+
 const testForTotalPrices = [
   [
     totalPrices,
@@ -452,6 +481,8 @@ const testCases = [
   ...testForFlagExtract,
   ...testForFullNames,
   ...testForTotalPrices,
+  ...testForIsAdult,
+  ...testForAbbreviations,
 ];
 
 testAll(testCases);
