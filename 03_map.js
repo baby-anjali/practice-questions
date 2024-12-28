@@ -1,3 +1,5 @@
+import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
+
 // // split full names into first and last names from [{ name: "Alice Smith" }, { name: "Bob Brown" }] => [["Alice", "Smith"], ["Bob", "Brown"]]
 // const splitFullNames = function (objects) { };
 
