@@ -50,11 +50,10 @@ const abbreviations = (objects) =>
 
 const mathScores = (objects) => objects.map(({ scores }) => scores.math);
 
-// // extract coordinates from [{ x: 1, y: 2 }, { x: 3, y: 4 }] => [[1, 2], [3, 4]]
 const extractCoordinates = (objects) => objects.map(({ x, y }) => [x, y]);
 
-// // extract full name and age from [{ firstName: "Alice", lastName: "Smith", age: 25 }, { firstName: "Bob", lastName: "Brown", age: 30 }] => [["Alice Smith", 25], ["Bob Brown", 30]]
-// const fullNameAndAge = function (objects) { };
+const fullNameAndAge = (objects) =>
+  objects.map((obj) => fullNames([obj]).concat(obj.age));
 
 // // extract scores from [{ name: "Alice", scores: { math: 90, english: 85 } }, { name: "Bob", scores: { math: 80, english: 75 } }] => [[90, 85], [80, 75]]
 // const extractScores = function (objects) { };
@@ -314,6 +313,25 @@ const extractCoordinates = (objects) => objects.map(({ x, y }) => [x, y]);
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
 
+const testForFullNamesAndAge = [
+  [
+    fullNameAndAge,
+    [
+      { firstName: "Alice", lastName: "Smith", age: 25 },
+      { firstName: "Bob", lastName: "Brown", age: 30 },
+    ],
+    [
+      ["Alice Smith", 25],
+      ["Bob Brown", 30],
+    ],
+  ],
+  [
+    fullNameAndAge,
+    [{ firstName: "Bob", lastName: "Brown", age: 30 }],
+    [["Bob Brown", 30]],
+  ],
+];
+
 const testForExtractCoordinates = [
   [
     extractCoordinates,
@@ -510,6 +528,7 @@ const testCases = [
   ...testForAbbreviations,
   ...testForMathScores,
   ...testForExtractCoordinates,
+  ...testForFullNamesAndAge,
 ];
 
 testAll(testCases);
