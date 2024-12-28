@@ -314,6 +314,21 @@ const extractCoordinates = (objects) => objects.map(({ x, y }) => [x, y]);
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
 
+const testForExtractCoordinates = [
+  [
+    extractCoordinates,
+    [
+      { x: 1, y: 2 },
+      { x: 3, y: 4 },
+    ],
+    [
+      [1, 2],
+      [3, 4],
+    ],
+  ],
+  [extractCoordinates, [{ y: 3, x: 4 }], [[4, 3]]],
+];
+
 const testForMathScores = [
   [
     mathScores,
@@ -494,6 +509,7 @@ const testCases = [
   ...testForIsAdult,
   ...testForAbbreviations,
   ...testForMathScores,
+  ...testForExtractCoordinates,
 ];
 
 testAll(testCases);
