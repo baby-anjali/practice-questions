@@ -55,12 +55,12 @@ const extractCoordinates = (objects) => objects.map(({ x, y }) => [x, y]);
 const fullNameAndAge = (objects) =>
   objects.map((obj) => fullNames([obj]).concat(obj.age));
 
-// // extract scores from [{ name: "Alice", scores: { math: 90, english: 85 } }, { name: "Bob", scores: { math: 80, english: 75 } }] => [[90, 85], [80, 75]]
 const extractScores = (objects) =>
   objects.map(({ scores }) => Object.values(scores));
 
 // // extract key-value pairs from [{ key: "a", value: 1 }, { key: "b", value: 2 }] => [["a", 1], ["b", 2]]
-// const keyValuePairs = function (objects) { };
+const keyValuePairs = (objects) =>
+  objects.map(({ key, value }) => [key, value]);
 
 // // split full names into first and last names from [{ name: "Alice Smith" }, { name: "Bob Brown" }] => [["Alice", "Smith"], ["Bob", "Brown"]]
 // const splitFullNames = function (objects) { };
@@ -314,6 +314,21 @@ const extractScores = (objects) =>
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
 
+const testForKeyValuePairs = [
+  [
+    keyValuePairs,
+    [
+      { key: "a", value: 1 },
+      { key: "b", value: 2 },
+    ],
+    [
+      ["a", 1],
+      ["b", 2],
+    ],
+  ],
+  [keyValuePairs, [{ key: "b", value: 2 }], [["b", 2]]],
+];
+
 const testForExtractScores = [
   [
     extractScores,
@@ -550,6 +565,7 @@ const testCases = [
   ...testForExtractCoordinates,
   ...testForFullNamesAndAge,
   ...testForExtractScores,
+  ...testForKeyValuePairs,
 ];
 
 testAll(testCases);
