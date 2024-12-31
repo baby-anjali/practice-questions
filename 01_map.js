@@ -2,7 +2,10 @@ import { testAll } from "../../tryouts/import_export/functions_library/test_fram
 
 import { add } from "../../tryouts/import_export/functions_library/math_functions.js";
 
-import { firstCharacter } from "../../tryouts/import_export/functions_library/miscellaneous.js";
+import {
+  firstCharacter,
+  splitWord,
+} from "../../tryouts/import_export/functions_library/miscellaneous.js";
 
 const vowels = "aeiou";
 
@@ -49,8 +52,6 @@ const domains = function (email) {
 };
 
 const domainNamesOf = (emails) => emails.map(domains);
-
-const splitWord = (string) => string.split(" ");
 
 const splitWordsOf = (strings) => strings.map(splitWord);
 

@@ -1,7 +1,7 @@
 import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
 
 // // split full names into first and last names from [{ name: "Alice Smith" }, { name: "Bob Brown" }] => [["Alice", "Smith"], ["Bob", "Brown"]]
-// const splitFullNames = function (objects) { };
+const splitFullNames = (objects) => objects.map(({ name }) => splitWord(name));
 
 // // normalize scores so they fall between 0 and 1 based on the max score from [{ name: "Alice", score: 80 }, { name: "Bob", score: 100 }] => [0.8, 1]
 // const normalizeScores = function (objects) { };
@@ -251,3 +251,19 @@ import { testAll } from "../../tryouts/import_export/functions_library/test_fram
 // // [{name: "Concert", attendees: [{firstName: "John", lastName: "Doe"}, {firstName: "Jane", lastName: "Smith"}]}, {name: "Conference", attendees: [{firstName: "Bob", lastName: "Brown"}]}]
 // // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
 // const getEventAttendees = function (events) { };
+
+const testForSplitFullNames = [
+  [
+    splitFullNames,
+    [{ name: "Alice Smith" }, { name: "Bob Brown" }],
+    [
+      ["Alice", "Smith"],
+      ["Bob", "Brown"],
+    ],
+  ],
+  [splitFullNames, [{ name: "Bob Brown" }], [["Bob", "Brown"]]],
+];
+
+const allTestCases = [...testForSplitFullNames];
+
+testAll(allTestCases);

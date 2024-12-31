@@ -77,8 +77,14 @@ const countNegativeNumbers = (numbers) => numbers.reduce(countNegative, 0);
 // // concatenateArrays([[1, 2], [3, 4], [5, 6]]) => [1, 2, 3, 4, 5, 6]
 // const concatenateArrays = function (arrays) { };
 
-// // flattenArray([[1, 2], [3, 4], [5, 6]]) => [1, 2, 3, 4, 5, 6]
-// const flattenArray = function (arrays) { };
+// flattenArray([[1, 2], [3, 4], [5, 6]]) => [1, 2, 3, 4, 5, 6]
+const flatten = (init, element) => {
+  return Array.isArray(element)
+    ? init.concat(element.reduce(flatten, []))
+    : [...init, element];
+};
+
+const flattenArray = (arrays) => arrays.reduce(flatten, []);
 
 // // uniqueNumbers([1, 2, 2, 3, 4, 4, 5]) => [1, 2, 3, 4, 5]
 // const uniqueNumbers = function (numbers) { };
