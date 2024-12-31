@@ -1,13 +1,19 @@
 // import { testAll } from "../../tryouts/import_export/functions_library/test_framework.js";
 
-import { add } from "../../tryouts/import_export/functions_library/math_functions.js";
+import { add } from "../../../tryouts/import_export/functions_library/math_functions.js";
 
 import {
   firstCharacter,
   splitWord,
-} from "../../tryouts/import_export/functions_library/miscellaneous.js";
+} from "../../../tryouts/import_export/functions_library/miscellaneous.js";
 
 const vowels = "aeiou";
+
+let sum = 0;
+
+for (let index = 0; index < 5; index++) {
+
+}
 
 const square = (number) => number * number;
 
